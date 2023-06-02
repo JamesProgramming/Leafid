@@ -1,5 +1,6 @@
 import path from "path";
 import jwt from "jsonwebtoken";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import { User } from "../Models/userModel.js";
 import { promisify } from "util";
@@ -311,6 +312,22 @@ export async function removeUser(req, res) {
 
   // Remove user.
   try {
+    const user = await User.findOne({ employeeId: payload.employeeId }).select(
+      "images"
+    );
+
+    // Remove user images.
+    user.images.map(async (img) => {
+      await promisify(fs.rm)(
+        path.join(__dirname, "..", "images", img),
+        (err) => {
+          console.log(err);
+        }
+      );
+    });
+
+    await Promise.all(user.images);
+
     await User.findOneAndRemove({ employeeId: payload.employeeId });
   } catch (e) {
     return res.status(400).json({
