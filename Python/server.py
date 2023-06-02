@@ -9,9 +9,13 @@ import flask_cors
 app = Flask(__name__)
 flask_cors.CORS(app)
 
-loaded_model = tf.keras.models.load_model(os.path.dirname(__file__) + "\image_model")
+loaded_model = tf.keras.models.load_model(
+    os.path.join(os.path.dirname(__file__), "image_model")
+)
 
-with open(os.path.dirname(__file__) + "\image_info.json", "r") as image_info:
+with open(
+    os.path.join(os.path.dirname(__file__), "image_info.json"), "r"
+) as image_info:
     image_info = json.load(image_info)
 
 
@@ -58,13 +62,19 @@ def index():
     )
 
 
-with open(os.path.dirname(__file__) + "\history.json", "r") as model_history:
+with open(
+    os.path.join(os.path.dirname(__file__), "history.json"), "r"
+) as model_history:
     model_history = json.load(model_history)
 
-with open(os.path.dirname(__file__) + "\image_info.json", "r") as image_info:
+with open(
+    os.path.join(os.path.dirname(__file__), "image_info.json"), "r"
+) as image_info:
     image_info = json.load(image_info)
 
-with open(os.path.dirname(__file__) + "\\test_results.json", "r") as test_results:
+with open(
+    os.path.join(os.path.dirname(__file__), "test_results.json"), "r"
+) as test_results:
     test_results = json.load(test_results)
 
 
