@@ -94,4 +94,4 @@ def imageStats():
     )
 
 
-app.run(port=3002, debug=True)
+# app.run(port=3002, debug=True)
