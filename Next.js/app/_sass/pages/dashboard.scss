@@ -1,0 +1,80 @@
+@import "../abstract/mixin.scss";
+@import "../abstract/variables.scss";
+
+.dashboard {
+  min-height: 100vh;
+  background-color: var(--color-white);
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    background-color: var(--color-white);
+    max-width: calc(var(--content-width) + var(--padding-m) * 2);
+    padding: var(--padding-m);
+    margin: auto;
+
+    @include respond($large) {
+      grid-template-columns: 1fr;
+    }
+
+    @include respond($small) {
+      padding: var(--padding-m) var(--padding-s);
+      gap: 4rem;
+    }
+
+    & > div {
+      display: grid;
+      row-gap: 5rem;
+    }
+  }
+
+  &__header {
+    font-size: var(--font-size-xl);
+    color: var(--color-black);
+    grid-column: 1 / -1;
+  }
+
+  &__info {
+    display: grid;
+    align-content: center;
+    gap: 2rem;
+    border: 0.1rem solid var(--color-white-d);
+    border-radius: var(--border-radius-m);
+    padding: var(--padding-m);
+
+    @include respond($small) {
+      padding: var(--padding-m);
+    }
+
+    & h2 {
+      font-size: var(--font-size-l);
+      color: var(--color-black);
+    }
+
+    & ul {
+      display: grid;
+      gap: 1rem;
+      list-style-position: inside;
+
+      & li {
+        display: grid;
+      }
+    }
+  }
+
+  &__buttons {
+    display: grid;
+    row-gap: 5rem;
+  }
+
+  &__button {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--padding-l) var(--padding-m);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-white-ml);
+  }
+}

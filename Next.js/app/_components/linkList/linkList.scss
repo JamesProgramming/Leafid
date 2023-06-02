@@ -1,0 +1,106 @@
+@import "@/app/_sass/abstract/mixin.scss";
+@import "@/app/_sass/abstract/variables.scss";
+
+.linkList-container {
+  @include respond($large) {
+    width: 30rem;
+    backdrop-filter: blur(8px);
+    border-right: 0.1rem solid var(--color-white-d);
+    background-color: var(--color-white-a80);
+    height: 100vh;
+    overflow-y: scroll;
+    padding-top: var(--padding-l);
+    padding-right: var(--padding-xs);
+    transition: transform 200ms;
+    margin-bottom: var(--margin-sl);
+  }
+
+  @include respond($small) {
+    width: 35rem;
+  }
+}
+
+.linkList-closed {
+  @include respond($large) {
+    transform: translateX(-100%);
+    overflow-y: visible;
+
+    & .linkList-button-container {
+      transform: translateX(30rem);
+
+      @include respond($small) {
+        transform: translateX(35rem);
+      }
+
+      & button {
+        background-color: var(--color-black);
+
+        & svg:last-of-type {
+          display: none;
+        }
+
+        & svg:first-of-type {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.linkList-button-container {
+  display: none;
+  @include respond($large) {
+    position: absolute;
+    top: 1.7rem;
+    left: 0;
+    display: block;
+  }
+
+  & button {
+    border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
+    background-color: transparent;
+    transition: all 200ms;
+    padding: calc(var(--padding-xs) - 0.5rem);
+  }
+
+  & svg:first-of-type {
+    display: none;
+    width: 3.5rem;
+    color: var(--color-white);
+  }
+
+  & svg {
+    width: 3.5rem;
+    color: var(--color-black);
+  }
+}
+
+.linkList {
+  max-width: 31rem;
+  font-family: inherit;
+  border-radius: 0 var(--border-radius-ml) var(--border-radius-ml) 0;
+  color: var(--color-black-l);
+  text-decoration: none;
+  font-size: var(--font-size-s);
+  display: block;
+
+  & span {
+    display: block;
+    padding: 1rem var(--padding-xs);
+
+    @include respond($small) {
+      padding: var(--padding-xs);
+    }
+  }
+
+  &:hover {
+    background-color: var(--color-white-d);
+    color: var(--color-black);
+  }
+}
+
+.linkList-header3 {
+  font-weight: bold;
+  color: var(--color-black);
+  background-color: var(--color-white-m);
+}

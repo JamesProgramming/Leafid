@@ -1,0 +1,26 @@
+.form {
+  margin: var(--margin-s) 0;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 1.5rem;
+
+  & button {
+    grid-column: 1;
+  }
+
+  & input {
+    grid-column: 1;
+    padding: var(--padding-xs);
+    border: 0.2rem solid var(--color-white);
+    background-color: var(--color-white-ml);
+    border-radius: var(--border-radius-s);
+  }
+
+  & input:hover {
+    border: 0.2rem solid var(--color-white-m);
+  }
+
+  & input:focus {
+    border: 0.2rem solid var(--color-blue-m);
+  }
+}

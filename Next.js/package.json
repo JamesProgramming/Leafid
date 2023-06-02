@@ -1,0 +1,32 @@
+{
+  "name": "leaf-id",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 192.168.0.147",
+    "build": "next build",
+    "start": "next start -H 192.168.0.147",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.0.18",
+    "axios": "^1.4.0",
+    "base64-arraybuffer": "^1.0.2",
+    "chart.js": "^4.3.0",
+    "config": "^3.3.9",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.2",
+    "mongodb": "^5.5.0",
+    "next": "^13.4.3",
+    "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "18.2.0",
+    "react-easy-crop": "^4.7.4",
+    "react-image-crop": "^10.0.9",
+    "react-image-file-resizer": "^0.4.8",
+    "react-webcam": "^7.0.1"
+  },
+  "devDependencies": {
+    "sass": "^1.62.1"
+  }
+}

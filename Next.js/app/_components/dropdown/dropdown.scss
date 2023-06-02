@@ -1,0 +1,135 @@
+.dropdown {
+  position: relative;
+
+  &__container {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+
+    @media screen and (any-hover: none) {
+      display: none;
+    }
+
+    @media screen and (any-pointer: coarse) {
+      display: none;
+    }
+  }
+
+  &__button {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1fr 4rem;
+    background-color: var(--color-green);
+    color: var(--color-white);
+    align-items: center;
+    border-radius: var(--border-radius-s);
+    cursor: pointer;
+    font-family: inherit;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+
+    & > span {
+      padding-left: var(--padding-s);
+      justify-self: start;
+
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 110%;
+        z-index: -1;
+        transform: translateX(100%);
+        background-image: linear-gradient(
+          100deg,
+          rgba(0, 0, 0, 0),
+          var(--color-blue-m)
+        );
+        transition: transform 210ms ease-out;
+      }
+    }
+
+    & svg {
+      width: 2rem;
+    }
+  }
+
+  &:hover {
+    span::after {
+      transform: translate(-9%);
+    }
+  }
+
+  &__list {
+    margin-top: 0.3rem;
+    display: grid;
+    border-radius: var(--border-radius-sl);
+    background-color: var(--color-white-d);
+    outline: 0.1rem solid var(--color-white-d);
+    row-gap: 0.1rem;
+    overflow: hidden;
+
+    & button {
+      cursor: pointer;
+      font-family: inherit;
+      width: 100%;
+      padding: var(--padding-s);
+      color: var(--color-black);
+      text-align: left;
+      background-color: var(--color-white);
+
+      &:hover {
+        background-color: var(--color-white-d);
+      }
+    }
+  }
+
+  &__select {
+    display: block;
+    position: relative;
+    border-radius: var(--border-radius-s);
+    background-color: var(--color-green);
+    color: var(--color-white);
+    font-family: inherit;
+    z-index: 1;
+    overflow: hidden;
+    padding: var(--padding-xs);
+    height: 5rem;
+    width: 100%;
+
+    &:focus,
+    &:active {
+      outline: none;
+      background-image: linear-gradient(
+        100deg,
+        rgba(0, 0, 0, 0),
+        var(--color-blue-m)
+      );
+    }
+
+    & option {
+      color: var(--color-black-m);
+      background-color: var(--color-white);
+    }
+  }
+}
+
+.dropdown--selected {
+  transform: rotate(180deg);
+}
+
+.dropdown--top {
+  .dropdown__list {
+    position: relative;
+    bottom: 5.5rem;
+    transform: translateY(-100%);
+  }
+}

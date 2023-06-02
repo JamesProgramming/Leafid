@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="51px" height="45px" viewBox="0 0 51 45" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="32.491936" y2="40.120483" id="gradient_1">
+      <stop offset="0%" stop-color="#A0F4FF" />
+      <stop offset="100%" stop-color="#02C8DB" />
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="34.1371" y2="24.939758" id="gradient_2">
+      <stop offset="0%" stop-color="#39B3FF" />
+      <stop offset="100%" stop-color="#1642A8" />
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="34.1371" y2="24.939758" id="gradient_3">
+      <stop offset="0%" stop-color="#50FF93" />
+      <stop offset="100%" stop-color="#168700" />
+    </linearGradient>
+    <path d="M9.45969 4.87952L41.9516 4.87952L41.9516 45L9.45969 45L9.45969 4.87952Z" id="path_1" />
+    <path d="M16.8629 0L51 0L51 24.9398L16.8629 24.9398L16.8629 0Z" id="path_2" />
+    <path d="M0 12.4699L34.1371 12.4699L34.1371 37.4096L0 37.4096L0 12.4699Z" id="path_3" />
+    <clipPath id="clip_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+    <clipPath id="clip_2">
+      <use xlink:href="#path_2" />
+    </clipPath>
+    <clipPath id="clip_3">
+      <use xlink:href="#path_3" />
+    </clipPath>
+  </defs>
+  <g id="Group">
+    <g id="Rectangle-4">
+      <use stroke="none" fill="url(#gradient_1)" xlink:href="#path_1" fill-rule="evenodd" />
+      <g clip-path="url(#clip_1)">
+        <use xlink:href="#path_1" fill="none" stroke="#000000" stroke-opacity="0.101960786" stroke-width="2" />
+      </g>
+    </g>
+    <g id="Rectangle-5">
+      <use stroke="none" fill="url(#gradient_2)" xlink:href="#path_2" fill-rule="evenodd" />
+      <g clip-path="url(#clip_2)">
+        <use xlink:href="#path_2" fill="none" stroke="#000000" stroke-opacity="0.101960786" stroke-width="2" />
+      </g>
+    </g>
+    <g id="Rectangle-5-Copy">
+      <use stroke="none" fill="url(#gradient_3)" xlink:href="#path_3" fill-rule="evenodd" />
+      <g clip-path="url(#clip_3)">
+        <use xlink:href="#path_3" fill="none" stroke="#000000" stroke-opacity="0.101960786" stroke-width="2" />
+      </g>
+    </g>
+  </g>
+</svg>

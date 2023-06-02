@@ -1,0 +1,130 @@
+@import "../abstract/mixin.scss";
+@import "../abstract/variables.scss";
+
+.document {
+  display: grid;
+  background-color: var(--color-white-md);
+  grid-template-columns: minmax(25rem, 1fr) minmax(0, var(--content-width)) 1fr;
+  padding-right: var(--padding-s);
+
+  @include respond($large) {
+    padding: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  &__content {
+    display: grid;
+    padding: var(--padding-ml);
+    padding-top: var(--padding-m);
+    border-radius: var(--border-radius-s);
+    margin-top: var(--margin-sl);
+    margin-left: var(--margin-sl);
+    margin-bottom: var(--margin-sl);
+    background-color: var(--color-white);
+
+    @include respond($large) {
+      grid-row: 1 / -1;
+      grid-column: 1 / -1;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    @include respond($mid) {
+      padding: var(--padding-m);
+      & > div > div {
+        width: 100%;
+      }
+    }
+
+    @include respond($small) {
+      padding: var(--padding-sl);
+    }
+  }
+
+  &__no-authorized {
+    display: grid;
+  }
+
+  &__header {
+    border-bottom: 0.1rem solid var(--color-white-d);
+    width: 100%;
+    display: grid;
+
+    & h1 {
+      font-size: var(--font-size-xl);
+      color: var(--color-black);
+      padding-bottom: var(--padding-xs);
+    }
+  }
+
+  &__aside {
+    display: grid;
+    gap: 0.5rem;
+    background-color: var(--color-white);
+    height: 100vh;
+    overflow-y: scroll;
+    position: sticky;
+    top: 0;
+    padding-bottom: var(--padding-xl);
+    padding-top: var(--padding-s);
+    border-right: 0.1rem solid var(--color-white-d);
+    grid-auto-rows: min-content;
+    padding-right: var(--padding-xs);
+
+    @include respond($large) {
+      width: 0;
+      overflow: visible;
+      grid-row: 1 / -1;
+      grid-column: 1;
+      z-index: 30;
+      background-color: transparent;
+      border: none !important;
+      padding: 0;
+    }
+  }
+
+  &__section {
+    margin-top: var(--margin-s);
+
+    @include respond($small) {
+      margin-top: 0;
+    }
+
+    & > div:first-child {
+      border-bottom: 0.1rem solid var(--color-white-d);
+
+      & h2 {
+        font-size: var(--font-size-l);
+        color: var(--color-black);
+        padding-top: var(--padding-m);
+        padding-bottom: var(--padding-xs);
+      }
+    }
+  }
+
+  &__subsection {
+    & h3 {
+      font-size: var(--font-size-m);
+      padding-bottom: var(--padding-s);
+      padding-top: var(--padding-m);
+      color: var(--color-black);
+
+      @include respond($small) {
+        padding-bottom: var(--padding-xs);
+      }
+    }
+
+    & ul li {
+      font-size: var(--font-size-s);
+      list-style-position: inside;
+    }
+
+    & form {
+      width: 40rem;
+
+      @include respond($small) {
+        width: 100%;
+      }
+    }
+  }
+}

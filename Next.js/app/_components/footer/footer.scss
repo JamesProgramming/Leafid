@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 5rem;
+  border-top: 0.1rem solid var(--color-white-d);
+  font-size: var(--font-size-s);
+  background-color: var(--color-white);
+
+  & p {
+    display: flex;
+    align-items: center;
+    color: var(--color-green);
+  }
+}

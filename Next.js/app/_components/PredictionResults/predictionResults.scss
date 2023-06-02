@@ -1,0 +1,33 @@
+.predictionResults {
+  display: grid;
+  background-color: var(--color-white-ml);
+  border-radius: var(--border-radius-s);
+  padding: var(--padding-s);
+  font-size: var(--font-size-s);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    & h2 {
+      font-size: var(--font-size-m);
+      color: var(--color-black);
+    }
+
+    & h2:last-of-type {
+      font-size: var(--font-size-s);
+      font-weight: normal;
+    }
+  }
+
+  &__results {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--padding-xs);
+
+    & p {
+      font-size: var(--font-size-s);
+      color: var(--color-black);
+    }
+  }
+}

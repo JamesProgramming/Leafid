@@ -1,0 +1,138 @@
+{
+  "category": [
+    {
+      "name": "Apple",
+      "diseases": [
+        { "name": "Scap", "number": 630 },
+        { "name": "Black Rot", "number": 621 },
+        { "name": "Cedar Apple Rust", "number": 275 },
+        { "name": "Healthy", "number": 1645 }
+      ]
+    },
+    {
+      "name": "Blueberry",
+      "diseases": [{ "name": "Healthy", "number": 1502 }]
+    },
+    {
+      "name": "Cherry (Including sour)",
+      "diseases": [
+        { "name": "Powdery mildew", "number": 1052 },
+        { "name": "Healthy", "number": 854 }
+      ]
+    },
+    {
+      "name": "Corn (Maize)",
+      "diseases": [
+        { "name": "Cercospora Leaf spot (Gray Leaf Spot)", "number": 513 },
+        { "name": "Common Rust", "number": 1192 },
+        { "name": "Northern Leaf Blight", "number": 985 },
+        { "name": "Healthy", "number": 1162 }
+      ]
+    },
+    {
+      "name": "Grape",
+      "diseases": [
+        { "name": "Black Rot", "number": 1180 },
+        { "name": "Esca (Black Measles)", "number": 1383 },
+        { "name": "Leaf Blight (Isariopsis Leaf Spot)", "number": 1076 },
+        { "name": "Healthy", "number": 423 }
+      ]
+    },
+    {
+      "name": "Orange",
+      "diseases": [
+        { "name": "Haunglongbing (Citrus Greening)", "number": 5507 }
+      ]
+    },
+    {
+      "name": "Peach",
+      "diseases": [
+        { "name": "Bacterial Spot", "number": 2297 },
+        { "name": "Healthy", "number": 360 }
+      ]
+    },
+    {
+      "name": "Bell Pepper",
+      "diseases": [
+        { "name": "Bacterial Spot", "number": 997 },
+        { "name": "Healthy", "number": 1478 }
+      ]
+    },
+    {
+      "name": "Potato",
+      "diseases": [
+        { "name": "Early Blight", "number": 1000 },
+        { "name": "Late Blight", "number": 1000 },
+        { "name": "Healthy", "number": 152 }
+      ]
+    },
+    { "name": "Raspberry", "diseases": [{ "name": "Healthy", "number": 371 }] },
+    { "name": "Soybean", "diseases": [{ "name": "Healthy", "number": 5090 }] },
+    {
+      "name": "Squash",
+      "diseases": [{ "name": "Powdery mildew", "number": 1835 }]
+    },
+    {
+      "name": "Stawberry",
+      "diseases": [
+        { "name": "Leaf Scorch", "number": 1109 },
+        { "name": "Healthy", "number": 456 }
+      ]
+    },
+    {
+      "name": "Tomato",
+      "diseases": [
+        { "name": "Bacterial Spot", "number": 2127 },
+        { "name": "Early Blight", "number": 1000 },
+        { "name": "Late Blight", "number": 1909 },
+        { "name": "Leaf Mold", "number": 952 },
+        { "name": "Septoria Leaf Spot", "number": 1771 },
+        { "name": "Spider Mites (Two Spotted Spider Mite)", "number": 1676 },
+        { "name": "Target Spot", "number": 1404 },
+        { "name": "Tomato Yellow Leaf Curl Virus", "number": 5357 },
+        { "name": "Tomato Mosaic Virus", "number": 373 },
+        { "name": "Healthy", "number": 1591 }
+      ]
+    }
+  ],
+  "map": [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+    [0, 3],
+    [1, 0],
+    [2, 0],
+    [2, 1],
+    [3, 0],
+    [3, 1],
+    [3, 2],
+    [3, 3],
+    [4, 0],
+    [4, 1],
+    [4, 2],
+    [4, 3],
+    [5, 0],
+    [6, 0],
+    [6, 1],
+    [7, 0],
+    [7, 1],
+    [8, 0],
+    [8, 1],
+    [8, 2],
+    [9, 0],
+    [10, 0],
+    [11, 0],
+    [12, 0],
+    [12, 1],
+    [13, 0],
+    [13, 1],
+    [13, 2],
+    [13, 3],
+    [13, 4],
+    [13, 5],
+    [13, 6],
+    [13, 7],
+    [13, 8],
+    [13, 9]
+  ]
+}

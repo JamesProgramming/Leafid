@@ -1,0 +1,44 @@
+.webcam-video {
+  border-radius: var(--border-radius-sl);
+  border: 0.4rem solid var(--color-white-d);
+}
+
+.webcam {
+  border-radius: var(--border-radius-sl);
+  display: grid;
+  grid-template-columns: min-content;
+  row-gap: 4rem;
+
+  &__back {
+    display: grid;
+    width: 13rem;
+  }
+
+  &__button {
+    display: grid;
+  }
+
+  &__img {
+    display: block;
+    border: 0.4rem solid var(--color-gray-l);
+    border-radius: var(--border-radius-sl);
+    z-index: 0;
+  }
+
+  &__camera-list {
+    display: grid;
+  }
+
+  &__output-container {
+    display: grid;
+    justify-content: center;
+    gap: 4rem;
+    position: relative;
+  }
+
+  &__output {
+    border-radius: var(--border-radius-sl);
+    border: 0.4rem solid var(--color-white-d);
+    background-color: var(--color-black);
+  }
+}

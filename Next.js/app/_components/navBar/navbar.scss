@@ -1,0 +1,137 @@
+@import "@/app/_sass/abstract/mixin.scss";
+@import "@/app/_sass/abstract/variables.scss";
+
+.navbar {
+  padding: var(--padding-s);
+  border-bottom: 0.1rem solid var(--color-white-d);
+  background-color: var(--color-white);
+
+  & img {
+    width: 11rem;
+  }
+
+  &__container {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    max-width: var(--content-width);
+    grid-template-columns: min-content max-content;
+  }
+
+  &__links {
+    display: grid;
+    gap: 3.3rem;
+    align-items: center;
+    list-style: none;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+  }
+
+  &__employee-id {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-s);
+    height: 100%;
+    border-radius: var(--border-radius-m);
+    padding: 0 var(--padding-sl);
+    color: var(--color-white);
+    background-color: var(--color-black);
+    background-image: linear-gradient(
+      110deg,
+      var(--color-blue-m),
+      var(--color-green-l)
+    );
+  }
+
+  & > div > div button:first-of-type {
+    display: none;
+  }
+
+  @include respond($large) {
+    & > div > div {
+      z-index: 200;
+      position: fixed;
+      top: 0;
+      right: 0;
+      transition: transform 200ms;
+      border-left: 0.1rem solid var(--color-white-d);
+      background-color: var(--color-white-a80);
+      display: grid;
+      grid-template-rows: min-content min-content;
+      height: 100vh;
+      backdrop-filter: blur(8px);
+
+      & > ul {
+        gap: 2rem;
+        display: grid;
+        grid-template-columns: auto;
+        align-content: start;
+        grid-auto-flow: row;
+
+        padding: var(--padding-s) var(--padding-l) var(--padding-s)
+          var(--padding-m);
+        width: 35rem;
+      }
+
+      & > ul > li {
+        margin-right: auto;
+      }
+
+      & > ul > li:last-of-type {
+        padding: var(--padding-xs) var(--padding-m);
+      }
+
+      & button:first-of-type {
+        align-self: start;
+        justify-self: end;
+        padding: var(--padding-xs);
+        background-color: transparent;
+        display: block;
+
+        & > svg {
+          color: var(--color-black);
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+    }
+  }
+}
+
+.navBar__menu-cover {
+  display: none;
+}
+
+@include respond($large) {
+  .navBar--closed {
+    transform: translateX(100%);
+    .navBar__menu-cover {
+      display: none;
+    }
+  }
+
+  .navBar__menu-cover {
+    display: block;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+}
+
+.navBar__hamburger {
+  display: none;
+
+  @include respond($large) {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    color: var(--color-black);
+    background-color: transparent;
+  }
+}

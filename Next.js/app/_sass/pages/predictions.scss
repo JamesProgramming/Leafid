@@ -1,0 +1,90 @@
+@import "../abstract/mixin.scss";
+@import "../abstract/variables.scss";
+
+.predictions {
+  min-height: 100vh;
+
+  &__container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, min-content);
+    margin: var(--margin-sl);
+
+    @include respond($large) {
+      grid-template-columns: repeat(2, min-content);
+    }
+
+    @include respond($mid) {
+      grid-template-columns: repeat(1, min-content);
+      margin: var(--margin-s);
+    }
+  }
+
+  &__figure {
+    padding: var(--padding-s);
+    border-radius: var(--border-radius-sl);
+
+    & img {
+      border-radius: var(--border-radius-sl);
+      border: 0.2rem solid var(--color-white-d);
+    }
+
+    & figcaption {
+      font-size: var(--font-size-s);
+      display: grid;
+      gap: 0.5rem;
+      padding-bottom: var(--padding-xs);
+      padding-top: var(--padding-xs);
+      color: var(--color-black);
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--margin-sl);
+  }
+
+  &__buttons {
+    display: grid;
+    width: 12rem;
+    @include respond($small) {
+      width: 13rem;
+    }
+  }
+
+  &__pages {
+    display: flex;
+    width: 18rem;
+    justify-content: center;
+
+    & a {
+      padding: 0 0.7rem;
+    }
+    @include respond($small) {
+      width: 14rem;
+
+      & a {
+        padding: 0 0.5rem;
+      }
+    }
+  }
+
+  &__no-images {
+    display: grid;
+    gap: 3.5rem;
+    justify-content: center;
+    margin: var(--margin-sl);
+    margin: auto;
+
+    & h1 {
+      display: grid;
+      width: max-content;
+      justify-content: center;
+      padding-top: var(--padding-m);
+      color: var(--color-black);
+      font-size: var(--font-size-m);
+      font-weight: normal;
+    }
+  }
+}

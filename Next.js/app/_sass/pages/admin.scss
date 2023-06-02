@@ -1,0 +1,67 @@
+@import "../abstract/mixin.scss";
+@import "../abstract/variables.scss";
+
+.admin {
+  &__user {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: auto auto;
+    border-radius: var(--border-radius-s);
+    background-color: var(--color-white-ml);
+    padding: var(--padding-s) var(--padding-sl);
+    margin: var(--margin-s) 0;
+
+    & h3 {
+      font-size: var(--font-size-m);
+      color: var(--color-black);
+    }
+
+    @include respond($mid) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      width: 100%;
+
+      & > div {
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
+
+  &__model-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+
+    @include respond($mid) {
+      flex-basis: 100%;
+    }
+  }
+
+  &__model {
+    display: grid;
+    width: 40rem;
+    border-radius: var(--border-radius-sl);
+    background-color: var(--color-white);
+    border: 0.1rem solid var(--color-white-ml);
+    padding: var(--padding-s);
+
+    @include respond($small) {
+      width: 35rem;
+    }
+
+    & h4 {
+      color: var(--color-black);
+      font-size: var(--font-size-ml);
+      padding-bottom: var(--padding-s);
+    }
+
+    & p {
+      font-size: var(--font-size-s);
+      color: var(--color-black-l);
+    }
+  }
+}

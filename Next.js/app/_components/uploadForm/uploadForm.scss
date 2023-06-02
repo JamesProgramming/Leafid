@@ -1,0 +1,68 @@
+.uploadForm {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr;
+  row-gap: 4rem;
+
+  &__back {
+    display: grid;
+    width: 13rem;
+  }
+
+  img {
+    border: 0.3rem solid var(--color-gray-l);
+    border-radius: var(--border-radius-s);
+  }
+}
+
+.reactEasyCrop {
+  &_Container {
+    cursor: move;
+    position: relative;
+    border-radius: var(--border-radius-s);
+    display: block;
+  }
+
+  &_Image {
+    display: block;
+    border: none !important;
+    outline: 0.1rem solid var(--color-gray-l);
+    border-radius: var(--border-radius-s);
+    filter: brightness(30%);
+  }
+
+  &_CropArea {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    outline: 0.3rem solid var(--color-green);
+    border-radius: var(--border-radius-s);
+    backdrop-filter: brightness(330%);
+
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 33%,
+        var(--color-green-a50) 33%,
+        var(--color-green-a50) 34%,
+        rgba(0, 0, 0, 0) 34%,
+        rgba(0, 0, 0, 0) 66%,
+        var(--color-green-a50) 66%,
+        var(--color-green-a50) 67%,
+        rgba(0, 0, 0, 0) 67%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 33%,
+        var(--color-green-a50) 33%,
+        var(--color-green-a50) 34%,
+        rgba(0, 0, 0, 0) 34%,
+        rgba(0, 0, 0, 0) 66%,
+        var(--color-green-a50) 66%,
+        var(--color-green-a50) 67%,
+        rgba(0, 0, 0, 0) 67%
+      );
+  }
+}

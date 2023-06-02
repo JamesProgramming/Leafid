@@ -1,0 +1,110 @@
+@import "@/app/_sass/abstract/mixin.scss";
+@import "@/app/_sass/abstract/variables.scss";
+
+.sign-in {
+  display: block;
+  border-radius: var(--border-radius-sl);
+  padding: var(--padding-s);
+  height: 64rem;
+  width: min-content;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-green-l),
+    var(--color-blue-m)
+  );
+
+  @include respond($large) {
+    width: 100%;
+  }
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: var(--border-radius-sl);
+    padding: var(--padding-m);
+    height: 100%;
+    position: relative;
+    background-image: linear-gradient(
+      to bottom right,
+      var(--color-white-m),
+      var(--color-green-gray-l)
+    );
+
+    & form {
+      & input {
+        border: 0.2rem solid var(--color-white);
+      }
+    }
+
+    & input:hover {
+      border: 0.2rem solid var(--color-white-m);
+    }
+
+    & input:focus {
+      border: 0.2rem solid var(--color-blue-m);
+    }
+  }
+
+  &__header {
+    font-size: var(--font-size-l);
+
+    @include respond($large) {
+      align-self: center;
+    }
+  }
+
+  &__form {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-rows: min-content min-content min-content;
+    align-content: end;
+
+    & input {
+      font-size: var(--font-size-sl);
+      width: 30rem;
+      border-radius: var(--border-radius-sl);
+      padding: var(--padding-s);
+
+      @include respond($large) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__button {
+    margin-top: var(--margin-sl);
+    @include respond($large) {
+      display: grid;
+      margin-top: var(--margin-sl);
+    }
+  }
+}
+
+.sign-in {
+  @include respond($large) {
+    width: 100%;
+    background-image: none;
+    padding: 0;
+    height: 67vh;
+    & > div {
+      display: grid;
+      background-image: none;
+      border-radius: 0;
+      width: 100%;
+      justify-content: stretch;
+    }
+  }
+
+  @include respond($small) {
+    & img {
+      width: 15rem;
+    }
+
+    &__form {
+      width: 100%;
+      grid-template-columns: 1fr;
+      justify-content: stretch;
+    }
+  }
+}

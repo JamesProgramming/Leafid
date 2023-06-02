@@ -1,0 +1,81 @@
+@import "../abstract/mixin.scss";
+@import "../abstract/variables.scss";
+
+.signin {
+  display: flex;
+  height: 100vh;
+  justify-content: end;
+  align-items: center;
+  background-image: linear-gradient(
+    100deg,
+    var(--color-white) 50%,
+    var(--color-green-l) 50.1%,
+    var(--color-green-d)
+  );
+
+  &__component {
+    display: flex;
+    justify-content: center;
+    flex-basis: 40%;
+  }
+
+  &__text {
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+
+    & h2 {
+      font-size: var(--font-size-xl);
+      padding-left: var(--padding-s);
+      font-weight: normal;
+      color: var(--color-white);
+    }
+  }
+}
+
+.signin {
+  @include respond($large) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 1fr;
+    width: 100%;
+    background-image: linear-gradient(
+      170deg,
+      var(--color-white-m),
+      var(--color-green-gray-l) 70%,
+      var(--color-green-d) 70%
+    );
+
+    &__component {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr;
+      align-self: start;
+      justify-content: stretch;
+    }
+
+    &__text {
+      & img {
+        width: 10rem;
+        height: 10rem;
+
+        @include respond($small) {
+          width: 7.5rem;
+          height: 7.5rem;
+        }
+      }
+
+      & h2 {
+        font-size: var(--font-size-l);
+        @include respond($small) {
+          font-size: var(--font-size-ml);
+        }
+      }
+    }
+  }
+}

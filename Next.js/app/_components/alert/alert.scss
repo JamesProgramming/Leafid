@@ -1,0 +1,45 @@
+@import "@/app/_sass/abstract/mixin.scss";
+@import "@/app/_sass/abstract/variables.scss";
+
+.alert-container {
+  width: 45rem;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: 50;
+  transform: translateX(-50%);
+
+  @include respond($small) {
+    width: 100%;
+    left: 0%;
+    transform: translateX(0);
+    padding: 0 var(--padding-s);
+  }
+}
+
+.alert {
+  margin-top: 0;
+  visibility: hidden;
+  display: flex;
+  width: 100%;
+  font-size: var(--font-size-sl);
+  padding: var(--padding-xs) var(--padding-s);
+  overflow: hidden;
+  box-shadow: 0 0 3rem rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-s);
+  backdrop-filter: blur(10px);
+  color: var(--color-black);
+  transform: translateY(-10%) scale(0.9);
+  transition: all 0.2s ease-out;
+  opacity: 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-white-a80);
+}
+
+.alert-show {
+  margin: var(--margin-s) 0;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
