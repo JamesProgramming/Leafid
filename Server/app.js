@@ -16,9 +16,14 @@ app.use(cookieParser());
 // Allow data compression.
 app.use(compression());
 
+if (process.env.production == "development") {
+}
+
 app.use(
   cors({
-    origin: [process.env.ORIGIN],
+    origin: ["http://192.168.0.128"],
+    credentials: true,
+    methods: ["POST"],
   })
 );
 
