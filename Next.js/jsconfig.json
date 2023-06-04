@@ -3,5 +3,6 @@
     "paths": {
       "@/*": ["./*"]
     }
-  }
+  },
+  "include": ["middleware.ts"]
 }

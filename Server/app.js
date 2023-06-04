@@ -18,17 +18,7 @@ app.use(compression());
 
 app.use(
   cors({
-    origin: [
-      "http://192.168.0.128",
-      "http://192.168.0.128:3001",
-      "http://192.168.0.128:3000",
-      "http://192.168.0.147:3001",
-      "http://localhost:3000",
-      "http://192.168.0.147:3000",
-      "http://localhost:3002",
-    ],
-    credentials: true,
-    methods: ["POST"],
+    origin: [process.env.ORIGIN],
   })
 );
 
