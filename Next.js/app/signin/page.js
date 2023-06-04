@@ -3,6 +3,10 @@ import logo from "@/public/logo.svg";
 import Signin from "@/app/_components/signin";
 import "@/app/_sass/pages/signin.scss";
 
+export const metadata = {
+  title: "Signin",
+};
+
 export default function Home() {
   return (
     <main className="signin">
