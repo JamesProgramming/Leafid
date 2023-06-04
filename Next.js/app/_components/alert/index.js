@@ -3,6 +3,8 @@ import { useState } from "react";
 import Button, { buttonStyle } from "../button";
 import "./alert.scss";
 
+// Global alert system. The Alerts component must be
+// inserted in the page in order for the alert system to function.
 function Alerts() {
   return (
     <section className="alert-container">
@@ -14,9 +16,12 @@ function Alerts() {
   );
 }
 
+// Display a alert message.
 function alert(message) {
   const alertContainer = document.getElementsByClassName("alert-container")[0];
   const alertEl = alertContainer.lastElementChild;
+
+  // Clone the alert template and add content.
   const newAlert = alertEl.cloneNode(true);
   newAlert.firstElementChild.innerText = message;
   let removed = false;
@@ -28,6 +33,9 @@ function alert(message) {
   });
   alertContainer.insertAdjacentElement("afterbegin", newAlert);
   newAlert.classList.add("alert");
+
+  // Delay adding the class in order for animation to have
+  // effect.
   setTimeout(() => {
     if (removed) return;
     newAlert.classList.add("alert-show");
