@@ -199,6 +199,7 @@ export async function updatedPassword(req, res) {
   res.cookie("jwt", token, {
     expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
     httpOnly: true,
+    secure: true,
   });
 
   return res.status(200).json({
