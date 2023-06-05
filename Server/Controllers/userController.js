@@ -48,10 +48,11 @@ export async function signin(req, res) {
   res.cookie("jwt", token, {
     expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
     httpOnly: true,
+    domain: process.env.DOMAIN,
   });
 
   // Add user theme to responce.
-  res.cookie("theme", user.theme);
+  res.cookie("theme", user.theme, { domain: process.env.DOMAIN });
 
   return res.status(200).json({
     status: "success",
@@ -64,8 +65,8 @@ export async function signin(req, res) {
 // User sign out.
 export async function signout(req, res) {
   // Remove authorization token.
-  res.cookie("jwt", "");
-  res.cookie("theme", "");
+  res.cookie("jwt", "", { domain: process.env.DOMAIN });
+  res.cookie("theme", "", { domain: process.env.DOMAIN });
 
   return res.status(200).json({
     status: "success",
@@ -200,6 +201,7 @@ export async function updatedPassword(req, res) {
     expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     secure: true,
+    domain: process.env.DOMAIN,
   });
 
   return res.status(200).json({
@@ -445,7 +447,7 @@ export async function changeTheme(req, res) {
   }
 
   // Set color theme cookie.
-  res.cookie("theme", req.body.data.theme);
+  res.cookie("theme", req.body.data.theme, { domain: process.env.DOMAIN });
 
   return res.status(200).json({
     status: "success",
@@ -516,6 +518,7 @@ export async function updatedUser(req, res) {
     res.cookie("jwt", token, {
       expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
       httpOnly: true,
+      domain: process.env.DOMAIN,
     });
   }
 

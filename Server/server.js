@@ -1,13 +1,9 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import app from "./app.js";
 
 process.on("uncaughtException", (err) => {
   console.log(err.name, err.message);
 });
-
-// Load configuration file into process environment.
-dotenv.config({ path: "./config.env" });
 
 // Database conection string.
 const database = process.env.DATABASE_URL.replace(

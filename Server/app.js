@@ -7,7 +7,14 @@ import cookieParser from "cookie-parser";
 import { rateLimit } from "express-rate-limit";
 import hpp from "hpp";
 
+import dotenv from "dotenv";
+
+// Load configuration file into process environment.
+dotenv.config({ path: "./config.env" });
+
 const app = express();
+
+app.set("trust proxy", "loopback");
 
 app.use(express.json({ limit: "300kb" }));
 app.use(express.urlencoded({ extended: true, limit: "300kb" }));
@@ -16,12 +23,9 @@ app.use(cookieParser());
 // Allow data compression.
 app.use(compression());
 
-if (process.env.production == "development") {
-}
-
 app.use(
   cors({
-    origin: ["http://192.168.0.128"],
+    origin: [process.env.ORIGIN],
     credentials: true,
     methods: ["POST"],
   })

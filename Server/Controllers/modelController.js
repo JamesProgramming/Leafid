@@ -31,7 +31,7 @@ export async function processImage(req, res) {
   // Fetch prediction results from server.
   let result;
   try {
-    result = await fetch("http://127.0.0.1:3002/api/predict", {
+    result = await fetch(process.env.PYTHON_API + "/api/predict", {
       body: JSON.stringify({ image: imgPath }),
       headers: {
         "Content-Type": "application/json",
