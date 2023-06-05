@@ -12,6 +12,12 @@ const buttonStyle = {
   back: "back",
 };
 
+/**
+ *
+ * @param {React.JSX.Element} children React Children.
+ * @param {boolean} disabled Whether button is disabled.
+ * @returns
+ */
 export default function Button({
   children,
   disabled,
