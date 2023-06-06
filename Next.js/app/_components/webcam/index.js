@@ -12,7 +12,7 @@ import { alert } from "../alert";
 function Webcamera(props) {
   const [image, setImage] = useState("");
   const [isPicture, setIsPicture] = useState(false);
-  const [devices, setDevices] = useState(false);
+  const [devices, setDevices] = useState([{ id: "", label: "" }]);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(false);
   const [camera, setCamera] = useState("");
@@ -22,6 +22,10 @@ function Webcamera(props) {
   useEffect(() => {
     if (!navigator.mediaDevices?.enumerateDevices)
       return alert("You have no camera.");
+
+    navigator.mediaDevices.enumerateDevices().then((devicelist) => {
+      setDevices(devicelist.filter((device) => device.kind == "videoinput"));
+    });
 
     navigator.mediaDevices.getUserMedia({ video: true }).then(() => {
       navigator.mediaDevices.enumerateDevices().then((devicelist) => {
@@ -46,7 +50,7 @@ function Webcamera(props) {
         // This is not Chromium based.
       }
     })();
-  }, [camera]);
+  }, []);
 
   const getResults = async function (e) {
     setIsLoading(true);
@@ -88,49 +92,57 @@ function Webcamera(props) {
   return (
     <div className="webcam">
       <div className="webcam__camera-list">
-        {devices && (
-          <Dropdown setItem={setCamera} selectFunction={() => 0}>
-            {devices.map((device, index) => {
+        <Dropdown setItem={setCamera}>
+          {[
+            <option hidden disabled selected key={7000}>
+              Choose camera
+            </option>,
+            ...devices.map((device, index) => {
               return (
                 <option value={device.deviceId} key={index}>
                   {device.label}
                 </option>
               );
-            })}
-          </Dropdown>
-        )}
+            }),
+          ]}
+        </Dropdown>
       </div>
       <div className="webcam__output-container">
-        <Webcam
-          videoConstraints={{
-            width: width,
-            height: height,
-            deviceId: camera,
-          }}
-          screenshotFormat="image/jpeg"
-          audio={false}
-          className="webcam__output"
-        >
-          {({ getScreenshot }) => {
-            return (
-              <div className="webcam__button">
-                <Button
-                  onClick={async () => {
-                    const img = getScreenshot({ width: 256, height: 256 });
+        {camera && (
+          <Webcam
+            videoConstraints={{
+              width: width,
+              height: height,
+              deviceId: camera,
+            }}
+            screenshotFormat="image/jpeg"
+            onUserMediaError={() => {
+              alert("Cannot get video stream.");
+            }}
+            audio={false}
+            className="webcam__output"
+          >
+            {({ getScreenshot }) => {
+              return (
+                <div className="webcam__button">
+                  <Button
+                    onClick={async () => {
+                      const img = getScreenshot({ width: 256, height: 256 });
 
-                    if (!img) {
-                      return alert("Retake photo.");
-                    }
-                    setImage(img);
-                    setIsPicture(true);
-                  }}
-                >
-                  Capture
-                </Button>
-              </div>
-            );
-          }}
-        </Webcam>
+                      if (!img) {
+                        return alert("Retake photo.");
+                      }
+                      setImage(img);
+                      setIsPicture(true);
+                    }}
+                  >
+                    Capture
+                  </Button>
+                </div>
+              );
+            }}
+          </Webcam>
+        )}
       </div>
     </div>
   );

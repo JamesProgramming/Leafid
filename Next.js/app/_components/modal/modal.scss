@@ -14,6 +14,7 @@
   backdrop-filter: blur(0.7rem);
   background-color: var(--color-white-a80);
   padding: var(--padding-sl);
+  overflow: hidden;
 
   & > button {
     grid-column: -1;
