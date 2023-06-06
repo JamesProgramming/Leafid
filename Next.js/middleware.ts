@@ -10,18 +10,14 @@ export async function middleware(request: NextRequest) {
       method: "POST",
     });
   } catch (e) {
-    console.log(e.message);
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 
-  console.log(re.status);
-  console.log(re);
   if (request.url.endsWith("signin")) {
     return NextResponse.next();
   }
 
   if (re.status !== 200) {
-    console.log(request.url);
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 

@@ -14,7 +14,7 @@ dotenv.config({ path: "./config.env" });
 
 const app = express();
 
-app.set("trust proxy", "loopback");
+app.set("trust proxy", "loopback, linklocal, uniquelocal");
 
 app.use(express.json({ limit: "300kb" }));
 app.use(express.urlencoded({ extended: true, limit: "300kb" }));
@@ -33,12 +33,11 @@ app.use(
 
 app.use(
   rateLimit({
-    max: 75,
+    max: 550,
     windowMs: 60 * 60 * 1000,
     message: "To many request in an hour.",
   })
 );
-console.log("request");
 
 app.use(hpp());
 // Route handlers.

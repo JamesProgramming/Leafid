@@ -11,8 +11,13 @@ export default function Dropdown({ children, setItem, name, selectFunction }) {
 
   useEffect(() => {
     if (selectFunction) {
+      selectElement.current.selectedIndex = selectFunction();
       selectButton.current.innerText =
         selectElement.current[selectFunction()].innerText;
+
+      // Phone view
+
+      console.log(selectElement.current[selectFunction()]);
     } else {
       selectButton.current.innerText =
         selectElement.current[selectElement.current.selectedIndex].innerText;

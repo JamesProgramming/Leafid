@@ -22,12 +22,19 @@ function Webcamera(props) {
   useEffect(() => {
     if (!navigator.mediaDevices?.enumerateDevices)
       return alert("You have no camera.");
-    navigator.mediaDevices.enumerateDevices().then((devicelist) => {
-      setDevices(devicelist.filter((device) => device.kind == "videoinput"));
+
+    navigator.mediaDevices.getUserMedia({ video: true }).then(() => {
+      navigator.mediaDevices.enumerateDevices().then((devicelist) => {
+        setDevices(devicelist.filter((device) => device.kind == "videoinput"));
+      });
     });
-    navigator.permissions
-      .query({ name: "camera" })
-      .then((permissionsStatus) => {
+
+    (async () => {
+      try {
+        const permissionsStatus = await navigator.permissions.query({
+          name: "camera",
+        });
+
         permissionsStatus.addEventListener("change", () => {
           navigator.mediaDevices.enumerateDevices().then((devicelist) => {
             setDevices(
@@ -35,8 +42,11 @@ function Webcamera(props) {
             );
           });
         });
-      });
-  }, []);
+      } catch (e) {
+        // This is not Chromium based.
+      }
+    })();
+  }, [camera]);
 
   const getResults = async function (e) {
     setIsLoading(true);

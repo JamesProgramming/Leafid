@@ -3,6 +3,7 @@
 
 .predictions {
   min-height: 100vh;
+  background-color: var(--color-white);
 
   &__container {
     display: grid;
@@ -42,7 +43,7 @@
   &__pagination {
     display: flex;
     justify-content: center;
-    margin-bottom: var(--margin-sl);
+    padding-bottom: var(--margin-sl);
   }
 
   &__buttons {
