@@ -89,7 +89,7 @@ function Webcamera(props) {
     <div className="webcam">
       <div className="webcam__camera-list">
         {devices && (
-          <Dropdown setItem={setCamera}>
+          <Dropdown setItem={setCamera} selectFunction={() => 0}>
             {devices.map((device, index) => {
               return (
                 <option value={device.deviceId} key={index}>
