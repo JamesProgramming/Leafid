@@ -18,7 +18,7 @@ function UploadForm(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
 
-  const cropImage = function (image, cropPos, crop) {
+  const cropImage = function (image, cropPos) {
     const imageElement = new Image();
     imageElement.src = image;
 

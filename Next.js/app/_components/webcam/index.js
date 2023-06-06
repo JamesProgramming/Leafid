@@ -115,8 +115,12 @@ function Webcamera(props) {
             return (
               <div className="webcam__button">
                 <Button
-                  onClick={() => {
-                    const img = getScreenshot();
+                  onClick={async () => {
+                    const img = getScreenshot({ width: 256, height: 256 });
+
+                    if (!img) {
+                      return alert("Retake photo.");
+                    }
                     setImage(img);
                     setIsPicture(true);
                   }}
