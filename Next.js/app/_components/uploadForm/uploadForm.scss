@@ -1,7 +1,7 @@
 .uploadForm {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr;
+  grid-template-columns: 256px;
   row-gap: 4rem;
 
   &__back {
@@ -21,6 +21,9 @@
     position: relative;
     border-radius: var(--border-radius-s);
     display: block;
+    width: max-content;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &_Image {
