@@ -15,8 +15,9 @@ export default function Dropdown({ children, setItem, name, selectFunction }) {
       selectButton.current.innerText =
         selectElement.current[selectFunction()].innerText;
     } else {
-      selectButton.current.innerText =
-        selectElement.current[selectElement.current.selectedIndex].innerText;
+      selectElement.current.selectedIndex = 0;
+      //selectButton.current.innerText =
+      //selectElement.current[selectElement.current.selectedIndex].innerText;
     }
   }, [selectFunction]);
 
@@ -56,6 +57,7 @@ export default function Dropdown({ children, setItem, name, selectFunction }) {
         {isOpen && (
           <div className="dropdown__list">
             {children.map((element, index) => {
+              if (element.props.hidden) return;
               return (
                 <button onClick={selectItem} data-index={index} key={index}>
                   {element.props.children}

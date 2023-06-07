@@ -94,7 +94,7 @@ function Webcamera(props) {
       <div className="webcam__camera-list">
         <Dropdown setItem={setCamera}>
           {[
-            <option hidden disabled selected key={7000}>
+            <option disabled hidden key={7000}>
               Choose camera
             </option>,
             ...devices.map((device, index) => {
