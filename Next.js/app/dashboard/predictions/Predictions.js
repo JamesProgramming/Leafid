@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Button, { buttonStyle } from "@/app/_components/button";
 import CustomLink, { linkStyle } from "@/app/_components/link";
+import { customAlert } from "@/app/_components/alert";
 
 export default function Prediction() {
   const [pageNumbers, setPageNumbers] = useState([]);
@@ -41,7 +42,7 @@ export default function Prediction() {
           }
         );
       } catch (e) {
-        alert(e.message);
+        customAlert(e.message);
         return;
       }
 

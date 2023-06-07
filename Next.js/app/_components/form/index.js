@@ -26,7 +26,7 @@ export default function Form({ buttonName, inputs, action }) {
           form.current.elements[action.compare[1]].value
         )
       ) {
-        alert(action.compareMessage);
+        customAlert(action.compareMessage);
         return form.current.elements[action.compare[0]].focus();
       }
     }
@@ -41,11 +41,11 @@ export default function Form({ buttonName, inputs, action }) {
         { withCredentials: true }
       );
     } catch (e) {
-      return alert(e.response?.data.data.message);
+      return customAlert(e.response?.data.data.message);
     }
 
     if (action?.cleaner) action?.cleaner();
-    alert(results.data.data.message);
+    customAlert(results.data.data.message);
   };
 
   const selectFunction = () => {

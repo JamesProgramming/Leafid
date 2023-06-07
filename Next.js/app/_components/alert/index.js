@@ -17,7 +17,7 @@ function Alerts() {
 }
 
 // Display a alert message.
-function alert(message) {
+function customAlert(message) {
   const alertContainer = document.getElementsByClassName("alert-container")[0];
   const alertEl = alertContainer.lastElementChild;
 
@@ -52,4 +52,4 @@ function alert(message) {
   }, 3000);
 }
 
-export { alert, Alerts };
+export { customAlert, Alerts };

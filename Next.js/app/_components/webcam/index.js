@@ -7,7 +7,7 @@ import Webcam from "react-webcam";
 import { useEffect, useState } from "react";
 import Dropdown from "../dropdown";
 import PredictionResults from "../PredictionResults";
-import { alert } from "../alert";
+import { customAlert } from "../alert";
 
 function Webcamera(props) {
   const [image, setImage] = useState("");
@@ -21,7 +21,7 @@ function Webcamera(props) {
 
   useEffect(() => {
     if (!navigator.mediaDevices?.enumerateDevices)
-      return alert("You have no camera.");
+      return customAlert("You have no camera.");
 
     navigator.mediaDevices.enumerateDevices().then((devicelist) => {
       setDevices(devicelist.filter((device) => device.kind == "videoinput"));
@@ -117,7 +117,7 @@ function Webcamera(props) {
             }}
             screenshotFormat="image/jpeg"
             onUserMediaError={() => {
-              alert("Cannot get video stream.");
+              customAlert("Cannot get video stream.");
             }}
             audio={false}
             className="webcam__output"
@@ -130,7 +130,7 @@ function Webcamera(props) {
                       const img = getScreenshot({ width: 256, height: 256 });
 
                       if (!img) {
-                        return alert("Retake photo.");
+                        return customAlert("Retake photo.");
                       }
                       setImage(img);
                       setIsPicture(true);

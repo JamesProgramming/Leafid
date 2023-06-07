@@ -1,5 +1,5 @@
 import axios from "axios";
-import { alert } from "../alert";
+import { customAlert } from "../alert";
 
 async function AuthSignin(password, employeeId) {
   let results;
@@ -12,7 +12,7 @@ async function AuthSignin(password, employeeId) {
       { withCredentials: true }
     );
   } catch (e) {
-    alert(e.message);
+    customAlert(e.message);
     return false;
   }
 
@@ -20,7 +20,7 @@ async function AuthSignin(password, employeeId) {
     return true;
   }
 
-  alert(results.data.data.message);
+  customAlert(results.data.data.message);
   return false;
 }
 

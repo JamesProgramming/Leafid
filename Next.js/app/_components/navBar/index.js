@@ -6,7 +6,7 @@ import fullLogo from "@/public/fullLogo.svg";
 import fullLogoDark from "@/public/fullLogoDark.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { alert } from "../alert";
+import { customAlert } from "../alert";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
@@ -29,7 +29,7 @@ export default function Narbar() {
           { withCredentials: true }
         );
       } catch (e) {
-        alert(e.message);
+        customAlert(e.message);
       }
 
       results = results.data.data;
@@ -131,7 +131,7 @@ export default function Narbar() {
                       { withCredentials: true }
                     );
                   } catch (e) {
-                    alert(e.message);
+                    customAlert(e.message);
                   }
                 }}
               >
