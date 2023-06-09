@@ -41,6 +41,7 @@ function customAlert(message) {
     newAlert.classList.add("alert-show");
   }, 5);
 
+  // Hide after three seconds.
   setTimeout(() => {
     if (removed) return;
     newAlert.classList.remove("alert-show");
