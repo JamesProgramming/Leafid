@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 
-function CustomChart({ type, x, y, labels, datasets, children }) {
+function CustomChart({ type, x, y, labels, datasets, options, children }) {
   const [idCon, setIdCon] = useState("");
   const [idCav, setIdCav] = useState("");
 
@@ -57,6 +57,7 @@ function CustomChart({ type, x, y, labels, datasets, children }) {
         },
         options: {
           responsive: true,
+          ...options,
           plugins: {
             legend: {
               labels: {

@@ -29,11 +29,21 @@ export const metadata = {
 export default async function Home() {
   const data = await getChartInfo();
 
-  const category = data.data.image_stats.category;
+  const category = data.data.image_stats.categories;
 
+  // Image count summed by plant.
   const category_labels = category.map((cate) => cate.name);
   const category_data = category.map((cate) => {
     return cate.diseases.reduce((total, current) => total + current.number, 0);
+  });
+
+  // Image count by category.
+  const dataset_labels = category.flatMap((cate) =>
+    cate.diseases.map((disease) => cate.name + " " + disease.name)
+  );
+
+  const dataset_data = category.flatMap((cate) => {
+    return cate.diseases.map((disease) => disease.number);
   });
 
   return (
@@ -57,21 +67,39 @@ export default async function Home() {
                   }`.slice(0, 4) + "%"}
                 </p>
               </div>
+              <div className="document__subsection">
+                <h3>Test loss (sparse cross entropy)</h3>
+                <p className="paragraph">
+                  {`${data.data.test_results.results.loss}`.slice(0, 5)}
+                </p>
+              </div>
             </Section>
             <Section title={"Charts"}>
               <div className="document__subsection">
-                <h3>Number of images in dataset by plant</h3>
+                <h3>Dataset image count by plant</h3>
                 <CustomChart
                   datasets={[
                     {
-                      data: Array.from(category_data),
+                      data: category_data,
                       label: "Image Count by Plant",
                     },
                   ]}
                   type={"bar"}
-                  labels={Array.from(category_labels)}
-                  x="plant"
-                  y="number of images"
+                  labels={category_labels}
+                />
+              </div>
+              <div className="document__subsection">
+                <h3>Dataset image count by disease</h3>
+                <CustomChart
+                  datasets={[
+                    {
+                      data: dataset_data,
+                      label: "Image Count by disease",
+                    },
+                  ]}
+                  type={"bar"}
+                  labels={dataset_labels}
+                  options={{ indexAxis: "y", aspectRatio: 0.8 }}
                 />
               </div>
               <div className="document__subsection">
@@ -96,9 +124,7 @@ export default async function Home() {
                 />
               </div>
               <div className="document__subsection">
-                <h3>
-                  Model test and training loss (categorical cross entropy)
-                </h3>
+                <h3>Model test and training loss (sparse cross entropy)</h3>
                 <CustomChart
                   datasets={[
                     {

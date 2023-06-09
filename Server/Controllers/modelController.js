@@ -109,7 +109,7 @@ export async function images(req, res) {
 export async function modelInfo(req, res) {
   let result;
   try {
-    result = await fetch("http://127.0.0.1:3002/api/stats", {
+    result = await fetch(process.env.PYTHON_API + "/api/stats", {
       method: "GET",
     });
   } catch (e) {

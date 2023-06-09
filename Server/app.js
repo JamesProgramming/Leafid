@@ -47,7 +47,7 @@ app.use("/api/v1/model", modelRouter);
 // If route is not found.
 app.all("*", (req, res) => {
   res
-    .status("404")
+    .status(404)
     .json({ status: "failure", data: { message: "Route not found." } });
 });
 

@@ -12,6 +12,10 @@ async function AuthSignin(password, employeeId) {
       { withCredentials: true }
     );
   } catch (e) {
+    if (e.response) {
+      customAlert(e.response.data.data.message);
+      return false;
+    }
     customAlert(e.message);
     return false;
   }
