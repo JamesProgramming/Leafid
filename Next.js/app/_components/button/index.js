@@ -5,6 +5,9 @@ import {
 } from "@heroicons/react/24/solid";
 import "./button.scss";
 
+/**
+ * @type {{thin: string, close: string, next: string, back: string}} buttonStyle
+ */
 const buttonStyle = {
   thin: "thin",
   close: "close",
@@ -12,6 +15,14 @@ const buttonStyle = {
   back: "back",
 };
 
+/**
+ * @param {Object} props Given by react.
+ * @param {?boolean} props.disabled
+ * @param {keyof buttonStyle} props.style
+ * @param {function} props.onClick
+ * @param {function} props.onSubmit
+ * @param {string} props.type
+ */
 export default function Button({
   children,
   disabled,

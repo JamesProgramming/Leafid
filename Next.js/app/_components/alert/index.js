@@ -16,7 +16,10 @@ function Alerts() {
   );
 }
 
-// Display a alert message.
+/**
+ * Displays an alert message to the user.
+ * @param {String} message message to be displayed.
+ */
 function customAlert(message) {
   const alertContainer = document.getElementsByClassName("alert-container")[0];
   const alertEl = alertContainer.lastElementChild;
