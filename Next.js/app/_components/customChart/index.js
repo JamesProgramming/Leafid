@@ -2,11 +2,27 @@
 import { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 
+/**
+ * @typedef {object} dataset
+ * @property {string} dataset.label
+ * @property {any[]} dataset.data
+ */
+
+/**
+ * @param {object} props Given by react.
+ * @param {?string} props.type
+ * @param {?string} props.x
+ * @param {?string} props.y
+ * @param {any[]} props.labels
+ * @param {dataset} props.datasets
+ * @param {object} props.options
+ */
 function CustomChart({ type, x, y, labels, datasets, options, children }) {
   const [idCon, setIdCon] = useState("");
   const [idCav, setIdCav] = useState("");
 
   useEffect(() => {
+    // Create container with unique id.
     const idContainer =
       Math.floor(Math.random() * 1000000000) +
       "" +
@@ -20,15 +36,18 @@ function CustomChart({ type, x, y, labels, datasets, options, children }) {
   }, []);
 
   useEffect(() => {
+    // Create chart after id has been generated.
     if (idCav) {
       Chart.defaults.borderColor = "#00000033";
 
+      // Decrease the font size for small screens.
       if (window.innerWidth < 700) {
         Chart.defaults.font.size = 7;
       } else {
         Chart.defaults.font.size = 12;
       }
 
+      // Axis labels.
       let scales;
       if (x) {
         scales = {
@@ -75,6 +94,7 @@ function CustomChart({ type, x, y, labels, datasets, options, children }) {
   }, [idCav]);
 
   useEffect(() => {
+    // Make charts responsive.
     const containerListener = function () {
       const chartContainer = document.getElementById(idCon);
       const parentStyles = getComputedStyle(
@@ -97,8 +117,7 @@ function CustomChart({ type, x, y, labels, datasets, options, children }) {
   return (
     <>
       {children}
-
-      <div id={idCon} className="posr">
+      <div id={idCon}>
         <canvas id={idCav}></canvas>
       </div>
     </>

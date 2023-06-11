@@ -6,7 +6,11 @@ import {
 import "./button.scss";
 
 /**
- * @type {{thin: string, close: string, next: string, back: string}} buttonStyle
+ * @typedef {object} buttonStyle
+ * @property {string} buttonStyle.thin
+ * @property {string} buttonStyle.close
+ * @property {string} buttonStyle.next
+ * @property {string} buttonStyle.back
  */
 const buttonStyle = {
   thin: "thin",
@@ -16,12 +20,12 @@ const buttonStyle = {
 };
 
 /**
- * @param {Object} props Given by react.
+ * @param {object} props Given by react.
  * @param {?boolean} props.disabled
- * @param {keyof buttonStyle} props.style
- * @param {function} props.onClick
- * @param {function} props.onSubmit
- * @param {string} props.type
+ * @param {?keyof buttonStyle} props.style
+ * @param {?function} props.onClick
+ * @param {?function} props.onSubmit
+ * @param {?string} props.type
  */
 export default function Button({
   children,

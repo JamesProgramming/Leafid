@@ -3,15 +3,38 @@ import axios from "axios";
 import Button from "../button";
 import "./form.scss";
 import { useEffect, useState, useRef } from "react";
-import { alert } from "../alert";
+import { customAlert } from "../alert";
 import Dropdown from "../dropdown";
 import { updateTheme } from "../utils/theme";
 
+/**
+ * @typedef {object} inputs
+ * @property {string} inputs.type
+ * @property {string} inputs.placeholder
+ * @property {string} inputs.name
+ * @property {?string} inputs.value
+ */
+
+/**
+ * @typedef {object} action
+ * @property {string} action.url
+ * @property {?string[]} action.compare
+ * @property {?string} action.compareMessage
+ * @property {?function} action.cleaner
+ */
+
+/**
+ * @param {object} props Given by react.
+ * @param {string} props.buttonName
+ * @param {inputs} props.inputs
+ * @param {action} props.action
+ */
 export default function Form({ buttonName, inputs, action }) {
   const form = useRef();
   const formSubmit = async (e) => {
     e.preventDefault();
 
+    // Create payload to send to sever.
     const payload = inputs.reduce((load, input) => {
       return {
         ...load,
@@ -19,6 +42,7 @@ export default function Form({ buttonName, inputs, action }) {
       };
     }, {});
 
+    // Check if the two fields are the same.
     if (action?.compare) {
       if (
         !(
@@ -48,6 +72,7 @@ export default function Form({ buttonName, inputs, action }) {
     customAlert(results.data.data.message);
   };
 
+  // Select function for theme selector.
   const selectFunction = () => {
     const theme = document.cookie
       .split("; ")

@@ -3,6 +3,14 @@ import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import "./dropdown.scss";
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * Creates a custom select list. The children of this
+ * component should be option elements.
+ * @param {object} props Given by react.
+ * @param {?function} props.setItem
+ * @param {?string} props.name
+ * @param {function} props.selectFunction
+ */
 export default function Dropdown({ children, setItem, name, selectFunction }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isTop, setIsTop] = useState(false);
@@ -10,14 +18,14 @@ export default function Dropdown({ children, setItem, name, selectFunction }) {
   const selectElement = useRef();
 
   useEffect(() => {
+    // If there is a select function then select the
+    // index returned by the function.
     if (selectFunction) {
       selectElement.current.selectedIndex = selectFunction();
       selectButton.current.innerText =
         selectElement.current[selectFunction()].innerText;
     } else {
       selectElement.current.selectedIndex = 0;
-      //selectButton.current.innerText =
-      //selectElement.current[selectElement.current.selectedIndex].innerText;
     }
   }, [selectFunction]);
 
@@ -35,6 +43,8 @@ export default function Dropdown({ children, setItem, name, selectFunction }) {
       <div className={`dropdown__container ${isTop ? "dropdown--top" : ""}`}>
         <button
           onClick={() => {
+            // Determine if there is enough room below to display
+            // the option.
             if (
               window.innerHeight -
                 selectButton.current.getBoundingClientRect().bottom <
@@ -51,7 +61,6 @@ export default function Dropdown({ children, setItem, name, selectFunction }) {
           className="dropdown__button"
         >
           <span ref={selectButton}>{children[0].props.children}</span>
-
           <ChevronDownIcon className={isOpen ? "dropdown--selected" : ""} />
         </button>
         {isOpen && (

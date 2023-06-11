@@ -99,7 +99,7 @@ export default async function Home() {
                   ]}
                   type={"bar"}
                   labels={dataset_labels}
-                  options={{ indexAxis: "y", aspectRatio: 0.8 }}
+                  options={{ indexAxis: "y", aspectRatio: 0.5 }}
                 />
               </div>
               <div className="document__subsection">
