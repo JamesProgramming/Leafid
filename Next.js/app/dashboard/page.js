@@ -21,16 +21,16 @@ export default function Home() {
             <section className="dashboard__info">
               <h2>Leaf health checker</h2>
               <p className="paragraph">
-                This app will detect if your plant has a common desease or is
-                healthy. You can either upload an image of your plant leaf or
-                use the web app to take a picture.
+                This app will detect if your plant has a common disease or is
+                healthy. You can upload an image of your plant leaf or use the
+                web app to take a picture.
               </p>
             </section>
             <section className="dashboard__info">
               <h2>Links</h2>
               <p className="paragraph">
-                The following link contains a list of plant leaves and deseases
-                this model is optomized to detect:
+                The following link contains a list of plant leaves and diseases
+                this model is optimized to detect:
               </p>
               <ul>
                 <li>

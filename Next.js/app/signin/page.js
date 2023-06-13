@@ -18,8 +18,8 @@ export default function Home() {
           <Image
             src={logo}
             alt="logo"
-            width={130}
-            height={130}
+            width={150}
+            height={150}
             loading="eager"
           />
           <h2>
