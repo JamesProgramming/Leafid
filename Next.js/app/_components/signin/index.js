@@ -61,7 +61,7 @@ function Signin() {
             type="text"
             name="username"
             ref={username}
-            placeholder="Username"
+            placeholder="Employee ID"
           />
           <input
             type="password"
