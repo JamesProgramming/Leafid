@@ -1,23 +1,26 @@
 "use client";
 import Image from "next/image";
-import fullLogo from "@/public/fullLogo.svg";
+import fullLogo from "../../../public/fullLogo.svg";
 import { useEffect, useRef, useState } from "react";
 import Button from "../button";
 import "./sign-in.scss";
 import { AuthSignin } from "../utils/auth";
 import Loading from "../loading";
-import axios from "axios";
-
+import axios, { AxiosResponse } from "axios";
+import { MouseEventHandler } from "react";
+/**
+ * Signin form.
+ */
 function Signin() {
   const [isLoading, setIsLoading] = useState(false);
-  const username = useRef();
-  const password = useRef();
+  const employeeId = useRef<HTMLInputElement>();
+  const password = useRef<HTMLInputElement>();
 
-  const loginButton = async function (e) {
+  const loginButton: MouseEventHandler<HTMLButtonElement> = async function (e) {
     e.preventDefault();
     setIsLoading(true);
 
-    if (await AuthSignin(password.current.value, username.current.value)) {
+    if (await AuthSignin(password.current.value, employeeId.current.value)) {
       window.location.replace("/dashboard");
     }
     setIsLoading(false);
@@ -25,7 +28,7 @@ function Signin() {
 
   useEffect(() => {
     (async () => {
-      let loggedIn;
+      let loggedIn: AxiosResponse;
       try {
         loggedIn = await axios.post(
           process.env.NEXT_PUBLIC_API + "/api/v1/user/auth",
@@ -59,15 +62,17 @@ function Signin() {
         <form method="post" className="sign-in__form">
           <input
             type="text"
-            name="username"
-            ref={username}
+            name="employeeId"
+            ref={employeeId}
             placeholder="Employee ID"
+            aria-label="Employee ID"
           />
           <input
             type="password"
             name="password"
             ref={password}
             placeholder="Password"
+            aria-label="Password"
           />
           <div className="sign-in__button">
             <Button type="submit" onClick={loginButton}>

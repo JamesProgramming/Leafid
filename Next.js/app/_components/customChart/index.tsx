@@ -1,23 +1,43 @@
 "use client";
 import { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
+import { ChartType } from "chart.js";
 
-/**
- * @typedef {object} dataset
- * @property {string} dataset.label
- * @property {any[]} dataset.data
- */
+interface Datasets {
+  label: string;
+  data: any[];
+}
 
+interface Props {
+  type: ChartType;
+  x?: string;
+  y?: string;
+  labels: any[];
+  datasets: Datasets[];
+  options?: object;
+  children?: JSX.Element;
+}
+
+// Parameters type enforement is done by typescript
 /**
- * @param {object} props Given by react.
- * @param {?string} props.type
- * @param {?string} props.x
- * @param {?string} props.y
- * @param {any[]} props.labels
- * @param {dataset} props.datasets
- * @param {object} props.options
+ * Creates a chart using Chart.js.
+ * @param {*} props Given by react.
+ * @param {*} props.type The type of chart ('bar' or 'line' or ...).
+ * @param {*} props.x X axis label.
+ * @param {*} props.y Y axis label.
+ * @param {*} props.labels Labals for the index axis (default x axis).
+ * @param {*} props.datasets A list of data points and the dataset name.
+ * @param {*} props.options Any option ChartJS supports see {@link https://chartjs.org}.
  */
-function CustomChart({ type, x, y, labels, datasets, options, children }) {
+function CustomChart({
+  type,
+  x,
+  y,
+  labels,
+  datasets,
+  options,
+  children,
+}: Props) {
   const [idCon, setIdCon] = useState("");
   const [idCav, setIdCav] = useState("");
 
@@ -48,7 +68,7 @@ function CustomChart({ type, x, y, labels, datasets, options, children }) {
       }
 
       // Axis labels.
-      let scales;
+      let scales: object;
       if (x) {
         scales = {
           x: {

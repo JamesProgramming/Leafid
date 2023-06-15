@@ -1,8 +1,8 @@
-import Navbar from "@/app/_components/navBar";
-import "@/app/_sass/layout/document.scss";
-import LinkList from "@/app/_components/linkList";
-import Form from "@/app/_components/form";
-import Footer from "@/app/_components/footer";
+import Navbar from "../../_components/navBar";
+import "../../_sass/layout/document.scss";
+import LinkList from "../../_components/linkList";
+import Form from "../../_components/form";
+import Footer from "../../_components/footer";
 
 function Section({ children, title }) {
   return (
@@ -60,7 +60,7 @@ export default async function Home() {
                       process.env.NEXT_PUBLIC_API +
                       "/api/v1/user/updatedPassword",
                     compare: ["newPassword", "confirmPassword"],
-                    compareMessage: ["New password fields do not match"],
+                    compareMessage: "New password fields do not match",
                   }}
                 />
               </div>

@@ -1,36 +1,43 @@
 "use client";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Button from "../button";
 import "./form.scss";
-import { useEffect, useState, useRef } from "react";
+import { useRef } from "react";
 import { customAlert } from "../alert";
 import Dropdown from "../dropdown";
 import { updateTheme } from "../utils/theme";
 
-/**
- * @typedef {object} inputs
- * @property {string} inputs.type
- * @property {string} inputs.placeholder
- * @property {string} inputs.name
- * @property {?string} inputs.value
- */
+interface Inputs {
+  type: string;
+  placeholder?: string;
+  name: string;
+  options?: string[];
+  value?: string;
+}
 
-/**
- * @typedef {object} action
- * @property {string} action.url
- * @property {?string[]} action.compare
- * @property {?string} action.compareMessage
- * @property {?function} action.cleaner
- */
+interface Action {
+  url: string;
+  compare?: string[];
+  compareMessage?: string;
+  cleaner?: CallableFunction;
+}
 
+interface Props {
+  buttonName?: string;
+  inputs: Inputs[];
+  action: Action;
+}
+
+// Parameters type enforement is done by typescript
 /**
- * @param {object} props Given by react.
- * @param {string} props.buttonName
- * @param {inputs} props.inputs
- * @param {action} props.action
+ * Creates a preformated form with the given info.
+ * @param {*} props Given by react.
+ * @param {*} props.buttonName Name of the form submit button.
+ * @param {*} props.inputs A array of the input fields the form will contain.
+ * @param {*} props.action Addtional options for the form.
  */
-export default function Form({ buttonName, inputs, action }) {
-  const form = useRef();
+export default function Form({ buttonName, inputs, action }: Props) {
+  const form = useRef<HTMLFormElement>();
   const formSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,7 +62,7 @@ export default function Form({ buttonName, inputs, action }) {
       }
     }
 
-    let results;
+    let results: AxiosResponse;
     try {
       results = await axios.post(
         action.url,
@@ -93,7 +100,7 @@ export default function Form({ buttonName, inputs, action }) {
     return (
       <form className="form" ref={form} onSubmit={formSubmit}>
         <Dropdown
-          setItem={(value) => {
+          setItem={(value: string) => {
             updateTheme(value);
             form.current.requestSubmit();
           }}

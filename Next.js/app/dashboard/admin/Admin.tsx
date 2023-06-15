@@ -1,13 +1,13 @@
 "use client";
-import Navbar from "@/app/_components/navBar";
-import "@/app/_sass/layout/document.scss";
-import "@/app/_sass/pages/admin.scss";
-import LinkList from "@/app/_components/linkList";
-import Form from "@/app/_components/form";
-import axios from "axios";
+import Navbar from "../../_components/navBar";
+import "../../_sass/layout/document.scss";
+import "../../_sass/pages/admin.scss";
+import LinkList from "../../_components/linkList";
+import Form from "../../_components/form";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import Modal from "@/app/_components/modal";
-import Message from "@/app/_components/message";
+import Modal from "../../_components/modal";
+import Message from "../../_components/message";
 
 function Section({ children, title }) {
   return (
@@ -22,10 +22,10 @@ function Section({ children, title }) {
 
 export default function Admin() {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [users, setUsers] = useState("");
+  const [users, setUsers] = useState([]);
 
   const getAllUsers = async function () {
-    let result;
+    let result: AxiosResponse;
     try {
       result = await axios.post(
         process.env.NEXT_PUBLIC_API + "/api/v1/user/getAllUsers",
@@ -66,7 +66,7 @@ export default function Admin() {
       <Navbar />
       <div className="document">
         <aside className="document__aside">
-          <LinkList linkState={users} />
+          <LinkList linkState={users.length} />
         </aside>
         <div className="document__content">
           <div className="document__header">
@@ -109,7 +109,7 @@ export default function Admin() {
                 action={{
                   url: process.env.NEXT_PUBLIC_API + "/api/v1/user/create",
                   compare: ["password", "confirmPassword"],
-                  compareMessage: ["New password fields do not match"],
+                  compareMessage: "New password fields do not match",
                   cleaner: () => {
                     getAllUsers();
                   },
@@ -170,9 +170,9 @@ export default function Admin() {
                                 process.env.NEXT_PUBLIC_API +
                                 "/api/v1/user/update",
                               compare: ["newPassword", "confirmPassword"],
-                              compareMessage: [
+                              compareMessage:
                                 "New password fields do not match",
-                              ],
+
                               cleaner: () => {
                                 getAllUsers();
                               },

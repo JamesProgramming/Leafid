@@ -1,24 +1,28 @@
 "use client";
-import Button, { buttonStyle } from "../button";
+import Button, { ButtonStyle } from "../button";
 import "./uploadForm.scss";
-import { useRef, useState } from "react";
-import Cropper from "react-easy-crop";
+import { ChangeEventHandler, MouseEventHandler, useRef, useState } from "react";
+import Cropper, { Area } from "react-easy-crop";
 import modelApi from "../utils/modelApi";
 import FileResizer from "react-image-file-resizer";
 import Loading from "../loading";
-import PredictionResults from "../PredictionResults";
+import PredictionResults, { Results } from "../PredictionResults";
 
-function UploadForm(props) {
-  const fileSelector = useRef();
+/**
+ * Form for uploading an image. This is intended to be placed inside the `modal` component.
+ */
+function UploadForm() {
+  const fileSelector = useRef<HTMLFormElement>();
   const [imageSrc, setImageSrc] = useState("");
-  const [results, setResults] = useState("");
+  const [results, setResults] = useState([] as Results[]);
   const [croppedImageSrc, setCroppedImageSrc] = useState("");
   const [isPhoto, setIsPhoto] = useState(false);
   const [isCrop, setIsCrop] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
 
-  const cropImage = function (image, cropPos) {
+  // Crops image.
+  const cropImage = function (image: string, cropPos: Area) {
     const imageElement = new Image();
     imageElement.src = image;
 
@@ -42,12 +46,17 @@ function UploadForm(props) {
     return imageBase64;
   };
 
-  const imageSelected = async function (e) {
+  // Resizes image upon the user uploading an image.
+  const imageSelected: ChangeEventHandler<HTMLInputElement> = async function (
+    e
+  ) {
     setIsLoading(true);
     setIsCrop(true);
 
-    const myForm = new FormData(e.currentTarget.parentElement);
-    const image = myForm.get("image");
+    const myForm = new FormData(
+      e.currentTarget.parentElement as HTMLFormElement
+    );
+    const image = myForm.get("image") as Blob;
     const base64Image = await new Promise((resolve) => {
       FileResizer.imageFileResizer(
         image,
@@ -64,7 +73,7 @@ function UploadForm(props) {
         256
       );
     });
-    setImageSrc(base64Image);
+    setImageSrc(base64Image as string);
 
     setTimeout(() => {
       setIsLoading(false);
@@ -72,10 +81,11 @@ function UploadForm(props) {
   };
 
   const upload = function () {
-    fileSelector.current[0].click();
+    (fileSelector.current[0] as HTMLInputElement).click();
   };
 
-  const getResults = async function (e) {
+  // Fetches prediction results from API.
+  const getResults: MouseEventHandler<HTMLButtonElement> = async function (e) {
     setIsLoading(true);
     await modelApi(
       process.env.NEXT_PUBLIC_API + "/api/v1/model/",
@@ -94,7 +104,7 @@ function UploadForm(props) {
               setIsCrop(false);
               setImageSrc("");
             }}
-            style={buttonStyle.back}
+            style={ButtonStyle.back}
           >
             Upload
           </Button>
@@ -108,9 +118,8 @@ function UploadForm(props) {
           crop={crop}
           aspect={1}
           onCropChange={setCrop}
-          className="brs"
           onCropComplete={(areaPos) => {
-            setCroppedImageSrc(cropImage(imageSrc, areaPos, crop));
+            setCroppedImageSrc(cropImage(imageSrc, areaPos));
           }}
         ></Cropper>
 
@@ -134,9 +143,9 @@ function UploadForm(props) {
             onClick={() => {
               setIsPhoto(false);
               setIsCrop(true);
-              setResults("");
+              setResults([] as Results[]);
             }}
-            style={buttonStyle.back}
+            style={ButtonStyle.back}
           >
             Crop
           </Button>
@@ -146,8 +155,11 @@ function UploadForm(props) {
 
         {isLoading && <Loading />}
 
-        {!results && <Button onClick={getResults}>Get Prediction</Button>}
-        {results && <PredictionResults results={results} />}
+        {results.length === 0 ? (
+          <Button onClick={getResults}>Get Prediction</Button>
+        ) : (
+          <PredictionResults results={results} />
+        )}
       </div>
     );
   }
@@ -155,7 +167,7 @@ function UploadForm(props) {
   return (
     <div className="uploadForm">
       {!isPhoto && (
-        <Button onClick={upload} style={buttonStyle.thin}>
+        <Button onClick={upload} style={ButtonStyle.thin}>
           Choose File
         </Button>
       )}

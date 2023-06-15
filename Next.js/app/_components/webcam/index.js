@@ -1,5 +1,5 @@
 "use client";
-import Button, { buttonStyle } from "../button";
+import Button, { ButtonStyle } from "../button";
 import "./webcam.scss";
 import Loading from "../loading";
 import modelApi from "../utils/modelApi";
@@ -9,12 +9,15 @@ import Dropdown from "../dropdown";
 import PredictionResults from "../PredictionResults";
 import { customAlert } from "../alert";
 
-function Webcamera(props) {
+/**
+ * Uses divice cameras to take a picture. This is intended to go inside the `Modal` component.
+ */
+function Webcamera() {
   const [image, setImage] = useState("");
   const [isPicture, setIsPicture] = useState(false);
-  const [devices, setDevices] = useState([{ id: "", label: "" }]);
+  const [devices, setDevices] = useState([{ label: "", id: "" }]);
   const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState(false);
+  const [results, setResults] = useState([]);
   const [camera, setCamera] = useState("");
   const [showCamera, setShowCamera] = useState(false);
   const width = 256;
@@ -24,10 +27,12 @@ function Webcamera(props) {
     if (!navigator.mediaDevices?.enumerateDevices)
       return customAlert("No camera found.");
 
+    // Get available cameras.
     navigator.mediaDevices.enumerateDevices().then((devicelist) => {
       setDevices(devicelist.filter((device) => device.kind == "videoinput"));
     });
 
+    // For Chromium based devices.
     (async () => {
       try {
         const permissionsStatus = await navigator.permissions.query({
@@ -64,9 +69,9 @@ function Webcamera(props) {
           <Button
             onClick={() => {
               setIsPicture(false);
-              setResults("");
+              setResults([]);
             }}
-            style={buttonStyle.back}
+            style={ButtonStyle.back}
           >
             New photo
           </Button>
@@ -77,8 +82,11 @@ function Webcamera(props) {
         <div className="webcam__button">
           {isLoading && <Loading />}
 
-          {!results && <Button onClick={getResults}>Get Prediction</Button>}
-          {results && <PredictionResults results={results} />}
+          {results.length === 0 ? (
+            <Button onClick={getResults}>Get Prediction</Button>
+          ) : (
+            results.length && <PredictionResults results={results} />
+          )}
         </div>
       </div>
     );
@@ -88,6 +96,7 @@ function Webcamera(props) {
     <div className="webcam">
       <div className="webcam__camera-list">
         <Dropdown
+          name="cameraList"
           setItem={(cameraId) => {
             setCamera(cameraId);
             setShowCamera(true);

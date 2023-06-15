@@ -1,4 +1,4 @@
-import Message from "@/app/_components/message";
+import Message from "./_components/message";
 
 export const metadata = {
   title: "404 not found",

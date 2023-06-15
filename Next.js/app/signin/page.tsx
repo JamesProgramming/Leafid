@@ -1,7 +1,7 @@
 import Image from "next/image";
-import logo from "@/public/logo.svg";
-import Signin from "@/app/_components/signin";
-import "@/app/_sass/pages/signin.scss";
+import logo from "../../public/logo.svg";
+import Signin from "../_components/signin";
+import "../_sass/pages/signin.scss";
 
 export const metadata = {
   title: "Signin",

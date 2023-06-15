@@ -1,4 +1,6 @@
-const updateTheme = function (theme) {
+import { ValueOf } from "next/dist/shared/lib/constants";
+
+const updateTheme = function (theme: string) {
   const themes = [
     "light-mode",
     "dark-mode",

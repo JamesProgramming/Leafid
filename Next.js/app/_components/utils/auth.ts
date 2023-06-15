@@ -1,8 +1,14 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { customAlert } from "../alert";
 
-async function AuthSignin(password, employeeId) {
-  let results;
+/**
+ * Sign user into application.
+ * @param password User password.
+ * @param employeeId User employee ID.
+ * @returns Whether login was successful.
+ */
+async function AuthSignin(password: string, employeeId: string) {
+  let results: AxiosResponse;
   try {
     results = await axios.post(
       process.env.NEXT_PUBLIC_API + "/api/v1/user/signin",

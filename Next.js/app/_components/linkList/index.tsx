@@ -4,21 +4,30 @@ import "./linkList.scss";
 import Link from "next/link";
 import { ListBulletIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
-export default function LinkList({ parentId, linkState }) {
+interface Props {
+  linkState?: string | boolean | number;
+}
+
+/**
+ * This creates a list of links to all the h1 and h2 elements in the current page.
+ * @param props Given by react.
+ * @param props.linkState A variable that changes when the list should be refreshed.
+ */
+export default function LinkList(linkState: Props) {
   const [linkList, setLinkList] = useState([]);
   const [pathname, setPathName] = useState("");
   const [isClosed, setIsClosed] = useState(true);
 
   useEffect(() => {
-    let allHeaders = Array.from(document.querySelectorAll("h2, h3"));
+    const allHeaderElements = Array.from(document.querySelectorAll("h2, h3"));
 
-    allHeaders = allHeaders.map((header) => {
+    const allHeaders = allHeaderElements.map((header: HTMLElement) => {
       const id = header.innerText.split(" ").join("-");
-      //Math.floor(Math.random() * 10000000000) + "" + Date.now() + "pageId";
       header.setAttribute("id", id);
       return { name: header.innerText, id, h3: header.nodeName === "H3" };
     });
 
+    // Mobile view
     const closeMenu = (e) => {
       if (e.target.closest("aside")) return;
       setIsClosed(true);

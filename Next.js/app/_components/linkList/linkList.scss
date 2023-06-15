@@ -1,5 +1,5 @@
-@import "@/app/_sass/abstract/mixin.scss";
-@import "@/app/_sass/abstract/variables.scss";
+@import "../../_sass/abstract/mixin.scss";
+@import "../../_sass/abstract/variables.scss";
 
 .linkList-container {
   @include respond($large) {
@@ -34,6 +34,7 @@
 
       & button {
         background-color: var(--color-black);
+        opacity: 90%;
 
         & svg:last-of-type {
           display: none;

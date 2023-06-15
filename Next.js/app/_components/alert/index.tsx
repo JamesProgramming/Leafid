@@ -1,32 +1,34 @@
 "use client";
-import { useState } from "react";
-import Button, { buttonStyle } from "../button";
+import Button, { ButtonStyle } from "../button";
 import "./alert.scss";
 
-// Global alert system. The Alerts component must be
-// inserted in the page in order for the alert system to function.
+/**
+ * Global alert system. The Alerts component must be
+ * inserted in the page in order for the alert system to function.
+ */
 function Alerts() {
   return (
     <section className="alert-container">
       <div className="none">
         <p></p>
-        <Button style={buttonStyle.close} />
+        <Button style={ButtonStyle.close} />
       </div>
     </section>
   );
 }
 
 /**
- * Displays an alert message to the user.
- * @param {String} message message to be displayed.
+ * Displays an alert message to the user. The Alerts component must be
+ * inserted in the page in order for the alert system to function.
+ * @param {string} message message to be displayed.
  */
-function customAlert(message) {
+function customAlert(message: string) {
   const alertContainer = document.getElementsByClassName("alert-container")[0];
   const alertEl = alertContainer.lastElementChild;
 
   // Clone the alert template and add content.
-  const newAlert = alertEl.cloneNode(true);
-  newAlert.firstElementChild.innerText = message;
+  const newAlert: Element = alertEl.cloneNode(true) as Element;
+  newAlert.firstElementChild.textContent = message;
   let removed = false;
   newAlert.lastElementChild.addEventListener("click", () => {
     if (!removed) {

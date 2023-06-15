@@ -1,9 +1,9 @@
 "use client";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import Button, { buttonStyle } from "@/app/_components/button";
-import CustomLink, { linkStyle } from "@/app/_components/link";
-import { customAlert } from "@/app/_components/alert";
+import Button, { ButtonStyle } from "../../_components/button";
+import CustomLink, { LinkStyle } from "../../_components/link";
+import { customAlert } from "../../_components/alert";
 
 export default function Prediction() {
   const [pageNumbers, setPageNumbers] = useState([]);
@@ -15,8 +15,9 @@ export default function Prediction() {
   const [currentUrl, setCurrentUrl] = useState("");
   const display = 12;
 
+  // Change the current page.
   const pagination = (pageNumber = 1) => {
-    window.location.hash = pageNumber;
+    window.location.hash = pageNumber + "";
     setPredications(
       paginationPredictions.slice(
         (pageNumber - 1) * display,
@@ -33,7 +34,7 @@ export default function Prediction() {
 
   useEffect(() => {
     (async () => {
-      let results;
+      let results: AxiosResponse;
       try {
         results = await axios.get(
           process.env.NEXT_PUBLIC_API + "/api/v1/user/getImagesAndPredictions",
@@ -63,9 +64,12 @@ export default function Prediction() {
       } else {
         pagination();
       }
-      setPageNumbers([
-        ...Array(Math.ceil(paginationImages.length / display)).keys(),
-      ]);
+      setPageNumbers(
+        Array.from(
+          { length: Math.ceil(paginationImages.length / display) },
+          (_, i) => i
+        )
+      );
     }
   }, [paginationImages, paginationPredictions]);
 
@@ -118,11 +122,11 @@ export default function Prediction() {
       <div className="predictions__pagination">
         <div className="predictions__buttons">
           <Button
-            style={buttonStyle.back}
+            style={ButtonStyle.back}
             disabled={page - 1 === 0}
             onClick={() => pagination(page - 1)}
           >
-            Page {page - 1}
+            Page {page - 1 + ""}
           </Button>
         </div>
 
@@ -138,7 +142,7 @@ export default function Prediction() {
                     e.preventDefault();
                     pagination(pageNumber + 1);
                   }}
-                  type={linkStyle.underline}
+                  type={LinkStyle.underline}
                   url={currentUrl}
                 >
                   {pageNumber + 1}
@@ -148,11 +152,11 @@ export default function Prediction() {
         </div>
         <div className="predictions__buttons">
           <Button
-            style={buttonStyle.next}
+            style={ButtonStyle.next}
             disabled={page * display + 1 > paginationImages.length}
             onClick={() => pagination(page + 1)}
           >
-            Page {page + 1}
+            Page {page + 1 + ""}
           </Button>
         </div>
       </div>

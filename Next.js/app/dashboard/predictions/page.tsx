@@ -1,8 +1,8 @@
-import Navbar from "@/app/_components/navBar";
-import "@/app/_sass/pages/predictions.scss";
+import Navbar from "../../_components/navBar";
+import "../../_sass/pages/predictions.scss";
 
 import Predictions from "./Predictions";
-import Footer from "@/app/_components/footer";
+import Footer from "../../_components/footer";
 
 export const metadata = {
   title: "Predictions",

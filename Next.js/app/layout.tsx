@@ -1,7 +1,7 @@
 import "./globals.scss";
 
 import { Josefin_Sans } from "next/font/google";
-import { Alerts } from "@/app/_components/alert";
+import { Alerts } from "./_components/alert";
 import { cookies } from "next/dist/client/components/headers";
 const josefin_sans = Josefin_Sans({ subsets: ["latin"] });
 

@@ -2,6 +2,19 @@
 import { useEffect, useRef } from "react";
 import "./loading.scss";
 
+interface Obj {
+  lineFill: string;
+  lineWidth: number;
+  gradient: number[];
+  gradientStart: any[];
+  gradientStop: any[];
+  x: number;
+  y: number;
+  radius: number;
+  startA: number;
+  stopA: number;
+}
+
 // Desktop loading spinner
 const canvasLoading = () => {
   const canvas = document.createElement("canvas");
@@ -18,18 +31,22 @@ const canvasLoading = () => {
    *
    * @param {object} obj - Object containing properties for canvas arc.
    */
-  const arcCreator = function (obj) {
-    ctx.fillStyle = obj.fill;
+  const arcCreator = function (obj: Obj) {
     ctx.strokeStyle = obj.lineFill;
     if (obj.gradient) {
-      let grd = ctx.createLinearGradient(...obj.gradient);
-      grd.addColorStop(...obj.gradientStart);
-      grd.addColorStop(...obj.gradientStop);
+      const gdt = obj.gradient;
+      let grd = ctx.createLinearGradient(gdt[0], gdt[1], gdt[2], gdt[3]);
+      grd.addColorStop(
+        obj.gradientStart[0] as number,
+        obj.gradientStart[1] as string
+      );
+      grd.addColorStop(
+        obj.gradientStop[0] as number,
+        obj.gradientStop[1] as string
+      );
       ctx.strokeStyle = grd;
     }
     ctx.lineWidth = obj.lineWidth;
-    ctx.shadowColor = obj.shadowColor;
-    ctx.shadowBlur = obj.shadowBlur;
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.arc(obj.x, obj.y, obj.radius, obj.startA, obj.stopA);
@@ -122,8 +139,12 @@ const canvasLoading = () => {
   return canvas;
 };
 
-function Loading({ size }) {
-  const loadingIcon = useRef();
+interface Props {
+  size?: "small";
+}
+
+function Loading({ size }: Props) {
+  const loadingIcon = useRef<HTMLDivElement>();
 
   useEffect(() => {
     loadingIcon.current.appendChild(canvasLoading());

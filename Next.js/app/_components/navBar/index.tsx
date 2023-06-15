@@ -1,15 +1,18 @@
 "use client";
 import "./navbar.scss";
 import Image from "next/image";
-import CustomLink, { linkStyle } from "../link";
-import fullLogo from "@/public/fullLogo.svg";
-import fullLogoDark from "@/public/fullLogoDark.svg";
+import CustomLink, { LinkStyle } from "../link";
+import fullLogo from "../../../public/fullLogo.svg";
+import fullLogoDark from "../../../public/fullLogoDark.svg";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { customAlert } from "../alert";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
+/**
+ * Navbar for the website.
+ */
 export default function Narbar() {
   const [page, setPage] = useState("");
   const [employeeId, setEmployeeId] = useState("");
@@ -22,7 +25,7 @@ export default function Narbar() {
 
   useEffect(() => {
     (async () => {
-      let results;
+      let results: AxiosResponse;
       try {
         results = await axios.get(
           process.env.NEXT_PUBLIC_API + "/api/v1/user/",
@@ -32,9 +35,9 @@ export default function Narbar() {
         customAlert(e.message);
       }
 
-      results = results.data.data;
-      setEmployeeId(results.employeeId);
-      setIsAdmin(results.role === "admin");
+      const resultsData = results.data.data;
+      setEmployeeId(resultsData.employeeId);
+      setIsAdmin(resultsData.role === "admin");
     })();
   }, []);
 
@@ -55,6 +58,7 @@ export default function Narbar() {
             className="show-dark-mode"
           />
         </Link>
+        {/* Mobile view */}
         <button
           onClick={() => setIsClosed(false)}
           className="navBar__hamburger"
@@ -76,7 +80,7 @@ export default function Narbar() {
               {isAdmin && (
                 <CustomLink
                   href="/dashboard/admin"
-                  type={linkStyle.underline}
+                  type={LinkStyle.underline}
                   url={page}
                 >
                   Admin
@@ -86,7 +90,7 @@ export default function Narbar() {
             <li>
               <CustomLink
                 href="/dashboard"
-                type={linkStyle.underline}
+                type={LinkStyle.underline}
                 url={page}
               >
                 Dashboard
@@ -95,7 +99,7 @@ export default function Narbar() {
             <li>
               <CustomLink
                 href="/dashboard/predictions"
-                type={linkStyle.underline}
+                type={LinkStyle.underline}
                 url={page}
               >
                 Predictions
@@ -104,7 +108,7 @@ export default function Narbar() {
             <li>
               <CustomLink
                 href="/dashboard/model-info"
-                type={linkStyle.underline}
+                type={LinkStyle.underline}
                 url={page}
               >
                 Model Info
@@ -113,7 +117,7 @@ export default function Narbar() {
             <li>
               <CustomLink
                 href="/dashboard/settings"
-                type={linkStyle.underline}
+                type={LinkStyle.underline}
                 url={page}
               >
                 Settings
@@ -121,7 +125,7 @@ export default function Narbar() {
             </li>
             <li>
               <CustomLink
-                type={linkStyle.underline}
+                type={LinkStyle.underline}
                 href="/signin"
                 onClick={async () => {
                   try {

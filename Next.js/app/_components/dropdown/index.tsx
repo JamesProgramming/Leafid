@@ -1,21 +1,34 @@
 "use client";
-import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import "./dropdown.scss";
 import { useEffect, useRef, useState } from "react";
+import React from "react";
 
+interface Props {
+  children?: React.ReactElement[];
+  setItem: CallableFunction;
+  name: string;
+  selectFunction?: CallableFunction;
+}
+
+// Parameters type enforement is done by typescript
 /**
- * Creates a custom select list. The children of this
- * component should be option elements.
- * @param {object} props Given by react.
- * @param {?function} props.setItem
- * @param {?string} props.name
- * @param {function} props.selectFunction
+ * Creates a custom selection element.
+ * @param {*} props Given by react.
+ * @param {*} props.setItem A function called with the value of the selected item.
+ * @param {*} props.selectFunction Returns the index of the option to be selected.
+ * @param {*} props.name Select element name attribute.
  */
-export default function Dropdown({ children, setItem, name, selectFunction }) {
+export default function Dropdown({
+  children,
+  setItem,
+  selectFunction,
+  name,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isTop, setIsTop] = useState(false);
-  const selectButton = useRef();
-  const selectElement = useRef();
+  const selectButton = useRef<HTMLButtonElement>();
+  const selectElement = useRef<HTMLSelectElement>();
 
   useEffect(() => {
     // If there is a select function then select the
@@ -29,12 +42,12 @@ export default function Dropdown({ children, setItem, name, selectFunction }) {
     }
   }, [selectFunction]);
 
-  const selectItem = function (e) {
-    selectButton.current.innerText = e.currentTarget.innerText;
-    const optionIndex = e.currentTarget.dataset.index;
+  const selectItem = function (e: React.MouseEvent<HTMLElement>) {
+    const clickedButton = e.currentTarget as HTMLButtonElement;
+    selectButton.current.innerText = clickedButton.innerText;
+    const optionIndex = parseInt(clickedButton.dataset.index);
     selectElement.current.selectedIndex = optionIndex;
-
-    setItem(selectElement.current[optionIndex].value);
+    setItem(selectElement.current[optionIndex].getAttribute("value"));
     setIsOpen(false);
   };
 
@@ -82,7 +95,11 @@ export default function Dropdown({ children, setItem, name, selectFunction }) {
         name={name}
         onChange={() => {
           setItem(
-            selectElement.current[selectElement.current.selectedIndex].value
+            (
+              selectElement.current[
+                selectElement.current.selectedIndex
+              ] as HTMLOptionElement
+            ).value
           );
         }}
       >

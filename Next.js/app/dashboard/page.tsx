@@ -1,10 +1,10 @@
-import Link, { linkStyle } from "@/app/_components/link";
-import Webcam from "@/app/_components/webcam";
-import UploadForm from "@/app/_components/uploadForm";
-import NavBar from "@/app/_components/navBar";
-import "@/app/_sass/pages/dashboard.scss";
-import Modal from "@/app/_components/modal";
-import Footer from "@/app/_components/footer";
+import Link, { LinkStyle } from "../_components/link";
+import Webcam from "../_components/webcam";
+import UploadForm from "../_components/uploadForm";
+import NavBar from "../_components/navBar";
+import "../_sass/pages/dashboard.scss";
+import Modal from "../_components/modal";
+import Footer from "../_components/footer";
 
 export const metadata = {
   title: "Dashboard",
@@ -36,7 +36,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="dashboard/model-info#Dataset-categories"
-                    type={linkStyle.icon}
+                    type={LinkStyle.icon}
                   >
                     Diseases and plants list
                   </Link>
@@ -44,7 +44,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="dashboard/model-info#Charts"
-                    type={linkStyle.icon}
+                    type={LinkStyle.icon}
                   >
                     Charts of model training results
                   </Link>

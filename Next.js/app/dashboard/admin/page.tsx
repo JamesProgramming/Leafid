@@ -1,5 +1,5 @@
 import Admin from "./Admin";
-import Footer from "@/app/_components/footer";
+import Footer from "../../_components/footer";
 
 export const metadata = {
   title: "Admin",

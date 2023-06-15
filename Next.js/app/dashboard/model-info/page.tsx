@@ -1,13 +1,11 @@
-import CustomChart from "@/app/_components/customChart";
-import Navbar from "@/app/_components/navBar";
-import "@/app/_sass/layout/document.scss";
-import LinkList from "@/app/_components/linkList";
-import Footer from "@/app/_components/footer";
+import CustomChart from "../../_components/customChart";
+import Navbar from "../../_components/navBar";
+import "../../_sass/layout/document.scss";
+import LinkList from "../../_components/linkList";
+import Footer from "../../_components/footer";
 
 async function getChartInfo() {
-  const info = await fetch(process.env.NEXT_PUBLIC_API + "/api/v1/model/", {
-    next: { revalidatee: 3600 },
-  });
+  const info = await fetch(process.env.NEXT_PUBLIC_API + "/api/v1/model/");
   return info.json();
 }
 
