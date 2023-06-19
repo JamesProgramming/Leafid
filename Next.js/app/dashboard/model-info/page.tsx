@@ -101,41 +101,91 @@ export default async function Home() {
                 />
               </div>
               <div className="document__subsection">
-                <h3>Model test and training acurracy</h3>
+                <h3>Model validation and training acurracy (first training)</h3>
                 <CustomChart
                   datasets={[
                     {
                       label: "Training accuracy",
-                      data: Object.values(data.data.training_stats.accuracy),
+                      data: Object.values(
+                        data.data.training_stats.init.accuracy
+                      ),
                     },
                     {
                       label: "Validation accuracy",
                       data: Object.values(
-                        data.data.training_stats.val_accuracy
+                        data.data.training_stats.init.val_accuracy
                       ),
                     },
                   ]}
                   type={"line"}
-                  labels={Object.keys(data.data.training_stats.accuracy)}
+                  labels={Object.keys(data.data.training_stats.init.accuracy)}
                   x="epoch"
                   y="accuracy"
                 />
               </div>
               <div className="document__subsection">
-                <h3>Model test and training loss (sparse cross entropy)</h3>
+                <h3>Model validation and training loss (first training)</h3>
                 <CustomChart
                   datasets={[
                     {
                       label: "Training loss",
-                      data: Object.values(data.data.training_stats.loss),
+                      data: Object.values(data.data.training_stats.init.loss),
                     },
                     {
                       label: "Validation loss",
-                      data: Object.values(data.data.training_stats.val_loss),
+                      data: Object.values(
+                        data.data.training_stats.init.val_loss
+                      ),
                     },
                   ]}
                   type={"line"}
-                  labels={Object.keys(data.data.training_stats.accuracy)}
+                  labels={Object.keys(data.data.training_stats.init.accuracy)}
+                  x="epoch"
+                  y="loss"
+                />
+              </div>
+              <div className="document__subsection">
+                <h3>
+                  Model validation and training acurracy (second training)
+                </h3>
+                <CustomChart
+                  datasets={[
+                    {
+                      label: "Training accuracy",
+                      data: Object.values(
+                        data.data.training_stats.tuning.accuracy
+                      ),
+                    },
+                    {
+                      label: "Validation accuracy",
+                      data: Object.values(
+                        data.data.training_stats.tuning.val_accuracy
+                      ),
+                    },
+                  ]}
+                  type={"line"}
+                  labels={Object.keys(data.data.training_stats.tuning.accuracy)}
+                  x="epoch"
+                  y="accuracy"
+                />
+              </div>
+              <div className="document__subsection">
+                <h3>Model validation and training loss (second training)</h3>
+                <CustomChart
+                  datasets={[
+                    {
+                      label: "Training loss",
+                      data: Object.values(data.data.training_stats.tuning.loss),
+                    },
+                    {
+                      label: "Validation loss",
+                      data: Object.values(
+                        data.data.training_stats.tuning.val_loss
+                      ),
+                    },
+                  ]}
+                  type={"line"}
+                  labels={Object.keys(data.data.training_stats.tuning.accuracy)}
                   x="epoch"
                   y="loss"
                 />
